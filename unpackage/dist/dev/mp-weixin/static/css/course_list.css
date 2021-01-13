@@ -1,0 +1,150 @@
+/* 课程列表区域 */
+
+
+.course-list-wrap {
+	margin-top: 40rpx;
+}
+
+.live-title {
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-left: 10rpx;
+}
+
+.live-more,
+.content-more {
+	position: absolute;
+	right: 50rpx;
+	/* margin-left: 510rpx; */
+	display: inline;
+	color: #969696;
+	font-size: 20rpx;
+}
+
+.live-list {
+	margin-bottom: 60rpx;
+	padding-left: 8rpx;
+}
+
+.live-list::after {
+	display: block;
+	clear: both;
+	height: 0;
+	content: "";
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.live-list-img-wrap {
+	position: relative;
+	width: 31%;
+	height: 180rpx;
+	float: left;
+	margin-right: 6rpx;
+}
+
+/* 课程图片 */
+.live-list-img {
+	width: 100%;
+	height: 100%;
+	border-radius: 8rpx;
+}
+
+.course-title-icon {
+	position: absolute;
+	left: 0rpx;
+	top: 2rpx;
+	width: 80rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	border-radius: 16rpx 0 16rpx 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	font-size: small;
+	color: #DBDBDB;
+}
+
+/* 课程内容 */
+.live-list-info {
+	float: left;
+	width: 65%;
+	height: 180rpx;
+	margin-left: 15rpx;
+}
+
+.live-teacher-avatar {
+	width: 35rpx;
+	height: 35rpx;
+	border-radius: 50%;
+
+}
+
+/* 直播列表标题 */
+.live-c-title {
+	font-weight: bold;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+.live-status {
+	font-size: small;
+	padding-top: 10rpx;
+	color: #969696;
+}
+
+.live-status-tuwen {
+	font-size: small;
+	/* padding-top: 10rpx; */
+	color: #969696;
+	display: inline-block;
+	width: 60rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	border: 2rpx solid #969696;
+	border-radius: 8rpx;
+
+}
+
+.living-status {
+	padding-top: 10rpx;
+	color: #64D3AD;
+}
+
+/* 价格 */
+.live-teacher-price {
+	display: flex;
+
+}
+
+.price-wrap {
+	display: flex;
+	color: #64D3AD;
+	position: absolute;
+	right: 0px;
+	padding-right: 50rpx;
+}
+
+.free {
+	color: #64D3AD;
+}
+
+.numPrice {
+	color: #FF1B20;
+
+}
+
+.pass {
+	color: #4385FF;
+}
+
+.teacher-name {
+
+	margin-left: 15rpx;
+	font-size: 20rpx;
+	color: #323232;
+	width: auto;
+}

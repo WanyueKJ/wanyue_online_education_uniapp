@@ -1,0 +1,118 @@
+  .live-list {
+		margin-bottom: 60rpx;
+		padding: 0 8rpx;
+	}
+	
+	.live-list::after {
+		display:block;
+		clear:both;
+		height:0;
+		content: "";
+		visibility: hidden;
+		overflow:hidden;
+	}
+	
+	.live-list-img-wrap {
+		position: relative;
+		width: 31%;
+		height: 180rpx;
+		float: left;
+		margin-right: 6rpx;
+	}
+	
+	/* 课程图片 */
+	.live-list-img {
+		width: 100%;
+		height: 100%;
+		border-radius: 8rpx;
+	}
+	
+	.course-title-icon {
+		position: absolute;
+		left: 0rpx;
+		top: 2rpx;
+		width: 80rpx;
+		height: 40rpx;
+		line-height: 40rpx;
+		text-align: center;
+		border-radius: 16rpx 0 16rpx 0;
+		background-color: rgba(0, 0, 0, 0.6);
+		font-size: small;
+		color: #DBDBDB;
+	}
+	
+	/* 课程内容 */
+	.live-list-info {
+		float: left;
+		width: 65%;
+		height: 180rpx;
+		margin-left: 15rpx;
+	}
+	
+	.live-teacher-avatar {
+		width: 35rpx;
+		height: 35rpx;
+		border-radius: 50%;
+	}
+	
+	.live-teacher-avatar {
+		width: 35rpx;
+		height: 35rpx;
+		border-radius: 50%;
+	}
+	
+	/* 直播/内容列表标题 */
+	.live-c-title {
+		font-weight: bold;
+		width: 95%;
+		line-height: 30rpx;
+	}
+	
+	.live-status {
+		font-size: small !important;
+		color: #969696;
+	}
+	
+	.tuwen-title-wrap {
+		display: inline-block;
+		width: 60rpx;
+		height: 30rpx;
+		line-height: 30rpx;
+		text-align: center;
+		font-size: small;
+		border: 2rpx solid #969696;
+		color: #969696;
+	}
+		
+	.living-status {
+		color: #64D3AD;
+	}
+	
+	.live-status {
+		margin-top: 16rpx;
+	}
+	
+	.live-teacher-price {
+		margin-top: 20rpx;
+		height: 50rpx;
+		display: flex;
+		align-items: center;
+	}
+	
+	.teacher-name {
+		font-size: small;
+	}
+	
+	.price-wrap {
+		display: inline-block;
+		color: #64D3AD;
+	}
+	
+	.numPrice text {
+		color: #FF1B20;
+	}
+	
+	.price-wrap {
+		display: inline-block;
+		margin-left: 50%;
+	}

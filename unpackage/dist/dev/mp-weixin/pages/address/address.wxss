@@ -1,0 +1,94 @@
+
+.page{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.list{
+}
+.name {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+}
+.def {
+	position: absolute;
+	right: 5rpx;
+	width: 50rpx;
+	height: 50rpx;
+}
+.row {
+	/* position: absolute; */
+	margin-left: 20rpx;
+	height: 180rpx;
+	padding-top: 20rpx;
+}
+.newaddress {
+	color: #FFFFFF;
+	text-align: center;
+	position: fixed;
+	bottom: 20rpx;
+	left: 60rpx;
+	right: 60rpx;
+	height: 60rpx;
+	font-size: medium;
+	padding-top: 10rpx;
+	background-color: #38DAA6;
+}
+.title1 {
+	color: #000000;
+	font-size: medium;
+}
+.title2 {
+	margin-top: 10rpx;
+	color: #C9C9C9;
+	font-size: small;
+}
+.line1 {
+	margin-top: 10rpx;
+	width: 100%;
+	height: 1rpx;
+	background-color: #F0F0F0;
+}
+.line2 {
+	margin-top: 10rpx;
+	width: 100%;
+	height: 10rpx;
+	background-color: #F0F0F0;
+}
+.caozuo {}
+.edit {
+	margin-top: 5rpx;
+	padding-top: 3rpx;
+	text-align: center;
+	font-size: smaller;
+	margin-top: 10rpx;
+	position: absolute;
+	right: 100rpx;
+	color: #000000;
+	background-color: #C9C9C9;
+	width: 60rpx;
+	height: 40rpx;
+}
+.delete {
+	margin-top: 5rpx;
+	padding-top: 3rpx;
+	text-align: center;
+	font-size: smaller;
+	margin-top: 10rpx;
+	position: absolute;
+	right: 30rpx;
+	color: #000000;
+	background-color: #C9C9C9;
+	width: 60rpx;
+	height: 40rpx;
+}
+

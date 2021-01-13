@@ -1,0 +1,233 @@
+
+view,
+swiper-item,
+scroll-view {
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -webkit-flex-direction:column;
+          flex-direction:column;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+          flex-grow: 0;
+  -webkit-flex-basis: auto;
+          flex-basis: auto;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+
+
+.live-all-wrap {
+	background-color: #F4F5F6;
+}
+.video-wrap {
+	width: 750rpx;
+	height: 400rpx;
+	background-color: #000000;
+}
+.swpier {}
+.rounded {
+	margin-top: 20rpx;
+	width: 80rpx;
+	height: 80rpx;
+	-webkit-border-radius: 40rpx;
+	        border-radius: 40rpx;
+}
+.chatcell {}
+.messagebottom {
+	/* background-image: url(../../static/chat_message_other.png); */
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+}
+.messagebottom2 {
+
+	/* background-image: url(../../static/chat_message_self.png); */
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+}
+.message {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.user_nickname {
+	margin-top: 20rpx;
+	padding: 10rpx;
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.scroll1 {
+	width: 750rpx;
+}
+.textmessage {
+	margin-top: 20rpx;
+	padding: 20rpx;
+	-webkit-border-radius: 8rpx;
+	        border-radius: 8rpx;
+	font-size: 30rpx;
+	font-weight: normal;
+	max-width: 450rpx;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.textmessage2 {
+	margin-top: 20rpx;
+	padding: 20rpx;
+	-webkit-border-radius: 8rpx;
+	        border-radius: 8rpx;
+	font-size: 30rpx;
+	font-weight: normal;
+	max-width: 450rpx;
+	background-color: #34D695;
+	color: #FFFFFF;
+}
+.inputbottom {
+	height: 130rpx;
+	background-color: #FFFFFF;
+	position: fixed;
+	bottom: 0rpx;
+	width: 750rpx;
+}
+.inputclass {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	height: 130rpx;
+	width: 750rpx;
+}
+.inputborder {
+	position: absolute;
+	margin-top: 20rpx;
+	bottom: unset;
+	height: 80rpx;
+	left: 20rpx;
+	right: 140rpx;
+	background-color: #F4F5F6;
+	-webkit-border-radius: 40rpx;
+	        border-radius: 40rpx;
+}
+.input {
+	position: absolute;
+
+	bottom: unset;
+	height: 80rpx;
+	left: 20rpx;
+	right: 100rpx;
+	line-height: 2em;
+	color: #000000;
+	font-size: 30rpx;
+	-webkit-border-radius: 40rpx;
+	        border-radius: 40rpx;
+	padding-right: 20rpx;
+	padding-top: 10rpx;
+	padding-bottom: 10rpx;
+}
+.send {
+	position: absolute;
+	right: 30rpx;
+	color: #34D695;
+	font-size: 35rpx;
+	margin-top: 40rpx;
+}
+.tiwen {
+	font-size: 25rpx;
+	position: absolute;
+	right: 5rpx;
+	margin-top: 8rpx;
+}
+.wen-btn-wrap {
+	width: 100rpx;
+	height: 50rpx;
+	position: absolute;
+	right: 20rpx;
+	margin-top: 15rpx;
+	line-height: 70rpx;
+	-webkit-border-radius: 0 50rpx 50rpx 0;
+	        border-radius: 0 50rpx 50rpx 0;
+
+	/* background-color: #F5F5F5; */
+}
+.duihao-img {
+	width: 30rpx;
+	height: 30rpx;
+}
+.duihao-wrap {
+	position: absolute;
+	width: 40rpx;
+	height: 40rpx;
+	margin-top: 8rpx
+}
+.wen {
+	top: 20rpx;
+	margin-right: 10rpx;
+	margin-top: 20rpx;
+	background-color: #34D695;
+	color: #FFFFFF;
+	width: 40rpx;
+	height: 37rpx;
+	font-size: 30rpx;
+	text-align: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.wen2 {
+	top: 60rpx;
+	margin-left: 10rpx;
+	margin-top: 60rpx;
+	background-color: #34D695;
+	color: #FFFFFF;
+	width: 40rpx;
+	height: 37rpx;
+	font-size: 30rpx;
+	text-align: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.zhinan {
+	background-color: #FFFFFF;
+	margin-top: 20rpx;
+	margin-left: 40rpx;
+	margin-right: 40rpx;
+	height: 80rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+.zhinantext {
+	font-size: 35rpx;
+	height: 80rpx;
+	padding-left: 20rpx;
+	padding-top: 20rpx;
+}
+

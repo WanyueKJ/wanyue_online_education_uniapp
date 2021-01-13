@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "uni-icons": "/components/uni-ui/uni-icons/uni-icons",
+    "uni-badge": "/components/uni-ui/uni-badge/uni-badge"
+  }
+}

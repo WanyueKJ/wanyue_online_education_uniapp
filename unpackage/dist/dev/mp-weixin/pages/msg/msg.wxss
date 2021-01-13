@@ -1,0 +1,48 @@
+
+.msg-lt-wrap {
+	margin-top: 110rpx;
+	margin-bottom: 40rpx;
+	padding-left: 30rpx;
+}
+.msg-lt-title {
+	font-size: 34rpx;
+	font-weight: bold;
+}
+/* 主内容部分 */
+.msg-md-main::after {
+	display:block;
+	clear:both;
+	height:0;
+	content: "";
+	visibility: hidden;
+	overflow:hidden;
+}
+.msg-md-main {
+	margin-bottom: 40rpx;
+	padding-left: 30rpx;
+}
+/* 图片 */
+.msg-img {
+	width: 104rpx;
+	height: 104rpx;
+	float: left;
+	-webkit-border-radius: 20rpx;
+	        border-radius: 20rpx;
+}
+.msg-md-wrap {
+	float: left;	
+	margin-left: 38rpx;
+}
+.msg-md-wrap text {
+	display: block;
+}
+.msg-title {
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.msg-info {
+	color: #969696;
+}
+
+
+

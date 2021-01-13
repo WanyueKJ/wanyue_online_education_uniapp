@@ -1,0 +1,104 @@
+
+.login-all-wrap {
+	padding: 0 15rpx;
+}
+.reg-btn {
+	float: right;
+	margin-top: -45px;
+	font-size: 30rpx;
+	color: #646464;
+}
+.top-wrap button {
+	display: inline-block;
+	background-color: #FFFFFF;
+	overflow: inherit;
+}
+button::after{ 
+	border: none;
+}
+.captcha-login-btn,
+.pass-login-btn {
+	font-size: 30rpx;
+	color: #646464;
+}
+.currentLogin {
+	font-weight: bold;
+	font-size: 44rpx;
+}
+
+/* 输入框部分 */
+.login-input-wrap input {
+	color: #000000;
+}
+.border-bottom {
+	color: #C9C9C9;
+}
+.verify-code-wrap {
+	margin-top: 26rpx;
+	margin-bottom: 26rpx;
+}
+
+/*登录按钮部分*/
+.login-btn-wrap {
+	margin-top: 80rpx;
+	height: 90rpx;
+}
+.login-btn-wrap button {
+	font-size: 30rpx;
+	height: 100%;
+	line-height: 90rpx;
+}
+
+/* 登录按钮 输入内容时,去掉灰色效果 */
+.login-btn {
+	background: -webkit-gradient(linear, left top, right top, from(#7BD68E), to(#65CCB9));
+	background: -webkit-linear-gradient(left, #7BD68E, #65CCB9);
+	background: linear-gradient(to right, #7BD68E, #65CCB9);
+}
+.opatity {
+	opacity: 0.5;
+}
+
+/* 登录图标 */
+.login-icon-all-wrap {
+	margin-top: 320rpx;
+}
+.login-icon {
+	color: #60E28B;
+	display: inline-block;
+	width: 88rpx;
+	height: 88rpx;
+	text-align: center;
+	line-height: 88rpx;
+	font-size: 80rpx;
+}
+.qq-login-icon {
+	color: #63C6EF;
+}
+.uni-tag-text--primary {
+	margin: 0 60rpx;
+}
+.uni-tag-text--primary text {
+	display: block;
+}
+.login-icon-text {
+	color: #646464 !important;
+}
+.login-botttom-text {
+	color: #646464;
+}
+.xieyi {
+	color: #45DCAC;
+	font-size: 20rpx !important;
+}
+
+/* 忘记密码 */
+.forget-pass {
+	font-size: 26rpx;
+	color: #C9C9C9;
+	text-align: right;
+	margin-top: 30rpx;
+}
+
+
+

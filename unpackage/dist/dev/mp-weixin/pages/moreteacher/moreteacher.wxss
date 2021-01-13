@@ -1,0 +1,42 @@
+
+.m-teacher-wrap {
+	border-top: 6rpx solid #F5F5F5;
+}
+
+/* 老师搜索结果 */
+.search-teacher-info {
+	width: 95%;
+	padding-left: 7%;
+	margin: 0 auto 50rpx;
+}
+.s-more-view {
+	float: right;	
+	margin-top: 10rpx;
+	margin-right: 40rpx;
+	font-size: 12rpx;
+}
+
+/* 教师头像 */
+.search-teacher-item {
+	width: 100%;	
+	height: 100rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.teacher-avatar {
+	width: 90rpx;
+	height: 90rpx;
+	margin-right: 30rpx;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+}
+.teacher-inner-arow {
+	margin-left: 60%;
+}
+
+
+

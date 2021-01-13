@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "common-list": "/components/common/common-list",
+    "swiper-tab-head": "/components/common/swiper-tab-head",
+    "load-more": "/components/common/load-more",
+    "uni-popup": "/components/uni-ui/uni-popup/uni-popup",
+    "uni-nav-bar": "/components/uni-ui/uni-nav-bar/uni-nav-bar"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-icons": "/components/uni-ui/uni-icons/uni-icons",
+    "uni-list-item": "/components/uni-ui/uni-list-item/uni-list-item"
+  }
+}

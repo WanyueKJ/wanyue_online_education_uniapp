@@ -1,0 +1,46 @@
+
+page {
+	background-color: #F2F6FC;
+}
+.setting-all-wrap {
+	margin: 0 auto;
+	border-top: 4rpx solid #E8E8E8;
+}
+.touce-wrap {
+	/* width: 95%; */
+	height: 277rpx;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+}
+.touce-item {
+	height: 90rpx;
+	line-height: 90rpx;
+	padding-left: 21rpx;
+	border-bottom: 2rpx solid #F5F5F5;
+}
+.touch_txt {
+	display: inline-block;
+	width: 82%;
+	height: 100%;
+	color: #000000;
+	font-size: 30rpx;
+}
+.set-num-txt {
+	display: inline-block;
+	width: 15%;
+	text-align: right;
+}	
+
+/* 退出账号 */
+.logout-wrap {
+	height: 90rpx;
+	line-height: 90rpx;
+	margin-top: 20rpx;
+	text-align: center;
+	font-size: 30rpx;
+	color: #FF1B20;
+	background-color: #FFFFFF;
+}
+
+
+

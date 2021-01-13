@@ -1,0 +1,105 @@
+
+.pingjia-all-wrap {
+	padding-top: 10rpx;
+	border-top: 4rpx solid #F8F8F8;
+}
+
+/* 老师信息区 */
+.teacher-wrap {
+	width: 92%;
+	margin: 0 auto;
+}
+.course-title {
+	font-size: 28rpx;
+	color: #000000;
+}
+.teacher-avatar-name {
+	height: 60rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.avatar-img {
+	width: 30rpx;
+	height: 30rpx;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+}
+.teacher-name {
+	font-size: 20rpx;
+	color: #000000;
+	display: inline-block;
+	margin-left: 10rpx;
+}
+.bold-xian {
+	border-bottom: 12rpx solid #F8F8F8;
+	margin-bottom: 12rpx;
+}
+
+/* 评价内容区 */
+.pingjia-content-wrap {
+	width: 92%;		
+	margin: 0 auto;
+}
+.pingjia-xing-wrap {
+	height: 60rpx;
+	line-height: 60rpx;
+}
+.pingjia-title {
+	float: left;
+	font-size: 28rpx;
+	margin-right: 40rpx;
+}
+.xing-wrap {
+	float: left;
+	width: 60%;
+}
+.pingjia-xing {
+	color: #E1E1E1;
+	margin-right: 18rpx;
+}
+.checkxing {
+	color: #FFAC4B;
+}
+.xing-txt {
+	display: inline-block;
+	width: 17%;
+	text-align: right;
+	color: #FFAC4B;
+}
+.pinglun-content {
+	display: inline-block;
+    width: 100%;
+	min-height: 800rpx;
+	margin-top: 40rpx;
+}
+.pinglun-textarea {
+	width: 100% !important;
+	height: 800rpx;
+	font-size: 28rpx;
+}
+
+/* 评价按钮 */
+.pingjia-btn-wrap {
+	height: 70rpx;
+	line-height: 70rpx;
+	width: 90%;
+	font-size: 24rpx;
+	letter-spacing: 2rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+	color: #FFFFFF;
+	text-align: center;
+	margin: 0 auto;
+	position: fixed;
+	left:0;
+	right:0;
+	bottom: 24rpx;
+	background-color: #38DAA6;
+}
+
+
+

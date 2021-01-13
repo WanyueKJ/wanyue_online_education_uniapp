@@ -1,0 +1,50 @@
+
+/* 本项目公共样式 */
+
+.bg-main {
+	background-color: #FF4A6A!important;
+}
+
+.bg-hui-main {
+	background-color: #A9A5A0;
+}
+
+.bg-main-disabled {
+	background-color: #FF4A6A;
+}
+
+.text-main{
+	color: #3BDCA8;
+	position: relative;
+}
+
+.text-main::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -4px;
+	width: 40rpx;
+	height: 6rpx;
+	background-color: #4CE88E;
+	margin: 0 auto;
+}
+
+
+.uni-swiper-tab{
+	border-bottom: 1upx solid #EEEEEE;
+}
+.swiper-tab-list{
+	color: #969696;
+	font-weight: bold;
+}
+.uni-tab-bar .active{
+	color: #343434;
+}
+.active .swiper-tab-line{
+	border-bottom: 6upx solid #FEDE33;
+	width: 70upx;
+	margin: auto;
+	border-top: 6upx solid #FEDE33;
+	border-radius: 20upx;
+}

@@ -1,0 +1,128 @@
+
+.itemline{
+	margin-left: 55rpx;
+	margin-right: 5rpx;
+	height: 2rpx;
+	background-color: #CCCCCC;
+}
+.top {
+	height: 80rpx;
+	width: 100%;
+	background-color: #1FDCA9;
+}
+.my-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	height: 80rpx;
+	margin-top: 20rpx;
+}
+.userinfo-title-txt {
+	margin-left: 20rpx;
+	color: #000000;
+	margin-top: 10rpx;
+}
+.uni-icon-wrapper {
+	position: absolute;
+	right: 20rpx;
+	margin-top: 10rpx;
+}
+.userinfo-icon-img {
+	width: 40rpx;
+	height: 40rpx;
+	margin-top: 20rpx;
+}
+.title-wrap {
+	display: block;
+	width: 100%;
+	height: 61%;
+	margin: 0 auto;
+}
+.avatar-wrap {
+	background-color: #1FDCA9;
+	height: 180rpx;
+	padding-top: 80rpx;
+}
+.title-avatar {
+	float: left;
+}
+.name-id-wrap {
+	width: 79%;
+	height: 100%;
+	float: left;
+	background-color: #1FDCA9;
+	position: relative;
+	color: #FFFFFF;
+	margin-left: 20rpx;
+}
+.name-id-wrap text:first-child {
+	display: block;
+	font-size: 32rpx;
+	font-weight: bold;
+}
+.name-id-wrap text:nth-child(2) {
+	display: block;
+	margin-top: 10rpx;
+}
+.name-id-wrap text:nth-child(3) {
+	position: absolute;
+	right: 0rpx;
+	top: 30%;
+	color: #FFFFFF;
+}
+.id-wrap {
+	font-size: 20rpx;
+}
+/* 关注教师 */
+.guan-wrap {
+	width: 100%;
+	height: 60rpx;
+	padding-top: 10rpx;
+	padding-left: 20%;
+	color: #FFFFFF;
+}
+.guanzhu {
+	float: left;
+	margin-right: 16rpx;
+	font-size: 20rpx
+}
+.guan-info-wrap {
+	width: 58%;
+	font-size: 20rpx;
+	display: inline-block;
+}
+.teacher-info-btn {
+	display: inline-block;
+	width: 130rpx;
+	height: 36rpx;
+	line-height: 36rpx;
+	text-align: center;
+	background-color: transparent;
+	color: #FFFFFF;
+	border: 2rpx solid #FFFFFF;
+	-webkit-border-radius: 40rpx 40rpx;
+	        border-radius: 40rpx 40rpx;
+	font-size: 20rpx;
+}
+/* 个人中心下半部分文字标题 */
+.user-bottom-icon-left {
+	display: inline-block;
+	width: 7%;
+}
+.user-bottom-title {
+	display: inline-block;
+	width: 18%;
+}
+.user-bottom-icon {
+	display: inline-block;
+	text-align: right;
+	width: 69%;
+}
+.my-item {
+	color: #1FDCA9;
+}
+
