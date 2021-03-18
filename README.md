@@ -179,11 +179,6 @@
   
   > QQ群：995910672
 
-<div style="float:left;">
-<p>QQ群入群需验证</p>
-<p>问题：万岳教育后台语言？</p>
-<p>答案：（提示：java  or php）</p>
-</div>
 
 
 
