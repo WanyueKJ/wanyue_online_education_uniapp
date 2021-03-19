@@ -1,9 +1,8 @@
 <div align=center><img src="https://images.gitee.com/uploads/images/2021/0317/105428_2d83f8f9_8543696.png" width="590" height="212"/></div>
 
 ### 项目说明（如果对你有用，请点亮右上角的Star！）
+##### <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">项目文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">部署文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">常见问题</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">升级日志</a>
 
-##### 
-<a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">项目文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">部署文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">常见问题</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">升级日志</a>
 ---
 
 ### 系统演示  
@@ -179,15 +178,6 @@
   <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=JShAyXeoKqg2lWFEUSElxELImhjeMG4y&jump_from=webapi"><img border="0" src="https://images.gitee.com/uploads/images/2021/0317/100424_072ee536_8543696.png" alt="万岳在线教育讨论群" title="万岳在线教育讨论群"></a> 可加
   
   > QQ群：995910672
-
-<<<<<<< HEAD
-<div style="float:left;">
-<p>QQ群入群需验证</p>
-<p>问题：万岳教育后台语言？</p>
-<p>答案：（提示：java  or php）</p>
-</div>
-=======
->>>>>>> origin/master
 
 
 
