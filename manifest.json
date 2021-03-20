@@ -2,7 +2,7 @@
     "name" : "万岳教育开源",
     "appid" : "__UNI__5122150",
     "description" : "",
-    "versionName" : "1.2",
+    "versionName" : "1.0.3",
     "versionCode" : 102,
     "transformPx" : false,
     /* 5+App特有相关 */
@@ -111,7 +111,36 @@
             }
         },
         "compilerVersion" : 3,
-        "nativePlugins" : {}
+        "nativePlugins" : {
+            "DCTestUniPlugin" : {
+                "__plugin_info__" : {
+                    "name" : "声网ios插件",
+                    "description" : "声网ios",
+                    "platforms" : "iOS",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            },
+            "TestText" : {
+                "__plugin_info__" : {
+                    "name" : "TestText",
+                    "description" : "android",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
+        }
     },
     /* 快应用特有相关 */
     "quickapp" : {},
@@ -131,5 +160,13 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "万岳教育开源",
+        "router" : {
+            "base" : "/uni/",
+            "mode" : "hash"
+        },
+        "domain" : "https://demo.sdwanyue.com/uni/"
     }
 }

@@ -35,7 +35,6 @@
 		methods: {
 			fire(e, index, len) {
 				let childrens = this.childrens;
-				console.log(childrens);
 				// 全选
 				if (index === 0) {
 					childrens.map((vm, index) => {

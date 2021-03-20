@@ -58,6 +58,7 @@
 				url: app.globalData.site_url + "Course.GetGrade",
 				data: {},
 				success:(res)=> {
+					console.log(res);
 					let data = res.data.data;
 					if(parseInt(data.code) !== 0) {
 						return;

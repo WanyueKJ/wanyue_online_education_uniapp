@@ -13,6 +13,7 @@
 			<view @click="search" slot="right" style="position: relative; right: -30rpx;">
 				<text class="iconfont icon-faxianchaxun"></text>
 			</view>
+
 		</uni-nav-bar>
 		<!-- #endif -->
 		<!-- #ifndef MP-WEIXIN -->
@@ -34,7 +35,7 @@
 		<view class="index-banner-wrap">
 			<swiper class="index-banner swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
 			 :duration="duration">
-				<swiper-item @click="bannerTo(item.url)" v-for="(item, index) in bannerList" :key="item.id">
+				<swiper-item @click="bannerTo(item)" v-for="(item, index) in bannerList" :key="item.id">
 					<image class="index-banner-img" :src="item.image" mode="aspectFill"></image>
 				</swiper-item>
 			</swiper>
@@ -46,22 +47,36 @@
 			<scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="120">
 				<view @click="getCourseByClass(item.id, item.name)" class="course-item scroll-view-item_H" v-for="(item, index) in course_class"
 				 :key="item.id">
-					<image :src="item.thumb" mode="aspectFill"></image>
+					<image :src="item.thumb" mode="aspectFit"></image>
 					<text>{{item.name}}</text>
 				</view>
 			</scroll-view>
-
 		</view>
-
+		
+		<!-- 新闻资讯 -->
+		<view @click="openNews" class="news-wrap">
+			<image class="news-wrap-title-img" src="../../static/images/news_he.png" mode="aspectFit"></image>
+			<text class="news-shu">|</text>
+			
+			<swiper class="swiper-wrap" :vertical="true" :autoplay="true" :interval="3000" :duration="1000">
+				<swiper-item  v-for="(item, index) in news" :key="index" class="swiper-item">
+					<text class="news-title">{{item.name}}</text>
+				</swiper-item>
+			</swiper>
+			<text class="news-arow iconfont icon-jinrujiantou"></text>
+		</view>
+		
 		<!-- 课程列表区 -->
 		<view class="course-list-wrap">
-
 			<!-- 直播课堂 -->
 			<view class="course-list-wrap">
 				<view class="live-title-wrap">
 					<!-- 标题 更多 -->
 					<text class="live-title">直播课堂</text>
-					<text @click="livemore" class="live-more">更多&nbsp;></text>
+					<text @click="livemore" class="live-more">
+						更多
+						<text class="iconfont icon-jinrujiantou c-more-icon"></text>
+					</text>
 				</view>
 
 				<!-- 直播课列表 -->
@@ -103,7 +118,7 @@
 				<view class="live-title-wrap">
 					<!-- 标题 更多 -->
 					<text class="live-title">精选内容</text>
-					<text @click="contentmore" class="content-more">更多&nbsp;></text>
+					<text @click="contentmore" class="content-more">更多&nbsp;<text class="iconfont icon-jinrujiantou c-more-icon"></text></text>
 				</view>
 			</view>
 
@@ -142,7 +157,6 @@
 
 <script>
 	// 引入模板
-	import commonList from '@/components/common/common-list.vue';
 	import swiperTabHead from "@/components/common/swiper-tab-head.vue";
 	import loadMore from '@/components/common/load-more.vue';
 	import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue';
@@ -152,7 +166,6 @@
 
 	export default {
 		components: {
-			commonList,
 			swiperTabHead,
 			loadMore,
 			uniPopup,
@@ -160,11 +173,10 @@
 		},
 		data() {
 			return {
+				news: {},
 				//顶部选项卡
 				tabIndex: 0,
-
 				swiperheight: 0, //高度
-				newlist: [],
 				bannerList: {},
 				// 轮播图数据 
 				background: ['color1', 'color2', 'color3'],
@@ -194,10 +206,10 @@
 			})
 		},
 		onShow: function() {
-			this.getnums();
+			// this.getnums();
 		},
 		onLoad() {
-			this.getnums();
+			// this.getnums();
 			//当前年级
 			let gcName = app.globalData.grade_class.name;
 			if (gcName == '') {
@@ -217,21 +229,38 @@
 			})
 			//获取首页内容
 			this.getData();
+			this.getNews();
 		},
 		methods: {
-
-			getnums() {
+			getNews() {
+				let that = this;
 				let gData = app.globalData;
 				uni.request({
-					url: gData.site_url + 'Cart.GetNums',
-					method: 'POST',
+					url: gData.site_url + 'Course.getNews',
+					method: 'GET',
 					data: {
-						'uid': gData.userinfo.id,
-						'token': gData.userinfo.token,
-					},
+					},	
 					success: res => {
-						this.nums = res.data.data.info[0].nums;
+						console.log(res);
+						let data = res.data.data;
+						if(data.code == 0 && data.info.length > 0) {
+							that.news = res.data.data.info;
+						}
+						
 					},
+					fail: () => {
+						uni.showToast({
+							icon: 'none',
+							title: '网络错误',
+						});
+						return;
+					},
+				});
+				
+			},
+			openNews() {
+				uni.navigateTo({
+					url: '../news/news',
 				});
 			},
 			// 根据分类查看课程列表
@@ -273,15 +302,7 @@
 
 					}
 				});
-				var arr = [];
-				let obj = {
-					loadmore: "",
-					list: []
-				}
-				//obj.list = demo;
-				arr.push(obj);
 
-				this.newlist = arr;
 			},
 			//点击切换导航
 			tabtap(index) {
@@ -292,10 +313,10 @@
 			},
 			//官方滚动方法
 			scroll: function(e) {
-				this.old.scrollTop = e.detail.scrollTop
+				this.old.scrollTop = e.detail.scrollTop;
 			},
 			goTop: function(e) {
-				this.scrollTop = this.old.scrollTop
+				this.scrollTop = this.old.scrollTop;
 				this.$nextTick(function() {
 					this.scrollTop = 0
 				});
@@ -304,9 +325,12 @@
 					title: "纵向滚动 scrollTop 值已被修改为 0"
 				})
 			},
-			bannerTo(url) {
+			bannerTo(item) {
 				//此方法只能在真机端运行
-				plus.runtime.openURL(url);
+				// plus.runtime.openURL(url);
+				uni.navigateTo({
+					url: '../about/banner?url=' + encodeURIComponent(JSON.stringify(item.url)) + '&title=' + item.title,
+				});
 			},
 			checkGrade() {
 				uni.navigateTo({
@@ -319,22 +343,13 @@
 				})
 			},
 			shopcar() {
-				if (getApp().globalData.userinfo == '') {
-					uni.navigateTo({
-						url: '../login/login'
-					})
-					return;
-				}
-
-				uni.navigateTo({
-					url: '../shop-car/shop-car',
-				});
+				
 			},
 			// 查看大班课(语音、PPT、视频直播)内容详情
 			viewLiveInfo(liveCourseId, liveCoursetype) {
 
 
-				if (getApp().globalData.userinfo == '') {
+				if (app.globalData.userinfo == '') {
 					uni.navigateTo({
 						url: '../login/login'
 					})
@@ -342,19 +357,19 @@
 				}
 
 				uni.navigateTo({
-					url: '../live_course_info/live_course_info?courseid=' + liveCourseId + '&paytype=' + liveCoursetype,
+					url: '../../packageB/pages/live_course_info/live_course_info?courseid=' + liveCourseId + '&paytype=' + liveCoursetype,
 				});
 			},
 			viewContentInfo(contentCourseId, contentCoursetype) {
 
-				if (getApp().globalData.userinfo == '') {
+				if (app.globalData.userinfo == '') {
 					uni.navigateTo({
 						url: '../login/login'
 					})
 					return;
 				}
 				uni.navigateTo({
-					url: '../content-info/content-info?courseid=' + contentCourseId + '&paytype=' + contentCoursetype,
+					url: '../../packageB/pages/content-info/content-info?courseid=' + contentCourseId + '&paytype=' + contentCoursetype,
 				});
 			},
 
@@ -384,7 +399,6 @@
 	}
 
 	.search-all-wrap {
-
 		margin-top: 0rpx;
 		width: 90%;
 		height: 65rpx;
@@ -397,7 +411,7 @@
 		line-height: 65rpx;
 		border-radius: 30rpx;
 		margin-left: 20rpx;
-		padding-left: 20rpx;
+		ding-left: 20rpx;
 		background-color: #F5F5F5;
 		float: left;
 	}
@@ -446,4 +460,83 @@
 		background-color: #FF3333;
 		border-radius: 20upx;
 	}
+	
+	/* 新闻资讯 */
+	.news-wrap {
+		width: 97%;
+		height: 80rpx;
+		margin: 10rpx auto 0;
+		padding-left: 3%;
+		line-height: 80rpx;
+		border-radius: 34rpx;
+		background-color: #F6F6F6;
+		display: flex;
+		align-items: center;
+	}
+	
+	.news-wrap-title-img {
+		float: left;
+		width: 120rpx;
+		height: 100%;
+	}
+	
+	.news-shu {
+		float: left;
+		margin: 0 20rpx;
+		color: #CCCCCC;
+	}
+	
+	.news-title {
+		float: left;
+		width: 70%;
+		color: #333333;
+		font-size: 26rpx;
+		display: inline-block;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.news-arow {
+		color: #CCCCCC;
+		font-size: 28rpx;
+		position: absolute !important;
+		right: 45rpx !important;
+	}
+	
+	
+	.swiper-wrap {
+		width: 68%;
+		height: 70rpx;
+		line-height: 70rpx;
+	}
+	
+	.c-more-icon {
+		position: relative;
+		top: 5rpx;
+	}
+	
+	.live-more {
+		right: 29rpx !important;
+	}
+	
+	.content-more {
+		right: 29rpx !important;
+	}
+	
+	.course-list-wrap .course-wrap {
+		width: 100% !important;
+		padding-bottom: 0 !important;
+	}
+	
+	.course-list-wrap {
+		margin-bottom:  60rpx;
+	}
+	
+	.price-wrap {
+		padding-right: 16rpx !important;
+	}
+		
+	
 </style>

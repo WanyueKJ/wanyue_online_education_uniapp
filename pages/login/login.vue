@@ -1,53 +1,77 @@
 <template>
 	<view class="login-all-wrap">
+		<!-- #ifndef H5 -->
 		<uni-status-bar></uni-status-bar>
+		<image class="back-image" src="../../static/login_exit@2x.png" @click="back"></image>
+		<!-- #endif -->
 		<view class="top-wrap">
-			<template v-if="iswechat == 1">
-				<view class="iconfont icon-ego-close flex align-center justify-center font-lg" style="width: 100rpx; height: 100rpx; font-weight: bold;"
-				 hover-class="bg-light" @click="back"></view>
-			</template>
-			<button type="default" @click="register" class="reg-btn">注册</button>
 			<button class="captcha-login-btn" @click="chanloginType('captcha')" :class="{currentLogin : (loginType == 'captcha')}">验证码登录</button>
 			<button class="pass-login-btn" @click="chanloginType('pass')" :class="{currentLogin : (loginType == 'pass')}">密码登录</button>
 		</view>
-
 		<view class="text-center" style="padding-bottom: 70rpx;
-		font-size: 55rpx;">
-
-		</view>
-
+		font-size: 55rpx;"></view>
 		<view class="px-2 login-input-wrap">
 			<template v-if="!status">
 				<view class="mb-2">
-					<input type="text" placeholder-style="color:#C9C9C9" v-model="username" placeholder="请输入您的手机号" class="border-bottom p-2" />
+					<input @input="username_input" type="number" placeholder-style="color:#C9C9C9" v-model="username" placeholder="请输入您的手机号"
+					 class="border-bottom p-2" />
 				</view>
 				<view class="verify-code-wrap mb-2 flex align-stretch">
-					<input type="text" placeholder-style="color:#C9C9C9" v-model="password" :placeholder="placeholder" class="border-bottom p-2 flex-1" />
-					<view class="border-bottom flex align-center justify-center font text-light-muted" @click="getSmsCode" style="width: 150rpx;">
+					<template v-if="isForgetShow == true">
+						<input @input="password_input" type="password" placeholder-style="color:#C9C9C9" v-model="password" :placeholder="placeholder"
+						 class="border-bottom p-2 flex-1" />
+					</template>
+					<template v-else>
+						<input @input="password_input" type="number" placeholder-style="color:#C9C9C9" v-model="password" :placeholder="placeholder"
+						 class="border-bottom p-2 flex-1" />
+					</template>
+					<view class="border-bottom flex align-center justify-center font text-light-muted" @click="getSmsCode" style="width: 150rpx;"
+					 :style="canshowcode == true?  'color: #45DCAC;': 'color: #C9C9C9;'">
 						{{get_captcha_txt}}
 					</view>
 				</view>
 			</template>
 		</view>
-
+		<view class="newstate">
+			<template v-if="agree == false">
+				<image @click="agreeme" class="agree" src="../../static/jinyan_nor.png" mode="aspectFit"></image>
+			</template>
+			<template v-else>
+				<image @click="agreeme" class="agree" src="../../static/jinyan_sel.png" mode="aspectFit"></image>
+			</template>
+			<view class="flex align-center justify-center login-botttom-text font-sm">
+				我已阅读并同意<text @click="" class="xieyi font-sm">《用户服务协议》</text>和<text @click="" class="xieyi font-sm">《隐私保护政策》</text>
+			</view>
+		</view>
 		<view class="login-btn-wrap py-2 px-2">
-			<button class="login-btn bg-main text-white" style="border-radius: 50rpx; border: 0;" type="primary" :enabled="false"
+			<button enabled="enabled" class="login-btn bg-main text-white" style="border-radius: 50rpx; border: 0;" type="primary"
 			 :class="{ opatity: enabled}" @click="submit">
 				登录
 			</button>
-
+			<view @click="register" class="reg-btn">注册账号</view>
 			<navigator v-show="isForgetShow" class="forget-pass" url="/pages/forget_pass/forget_pass">{{foretPass}}</navigator>
+			<view style="height: 30rpx;"></view>
 
 		</view>
-
 		<view class="flex align-center justify-center pt-1 pb-3 login-icon-all-wrap">
+			<!-- #ifndef H5 -->
 			<!-- #ifdef MP-WEIXIN -->
-			<button @click="wechatlogin" open-type="getUserInfo" style="background-color: #FFFFFF;">
-				<view :class="{loginThreeShow : (login_by_wx == true)}" class="loginThreeHide uni-tag-text--primary font-sm">
-					<image class="login-icon" src="../../static/images/login_wx.png" mode=""></image>
-					<text class="login-icon-text font-sm">微信登录</text>
-				</view>
-			</button>
+			<template v-if="agree == true">
+				<button @click="wechatlogin" open-type="getUserInfo" style="background-color: #FFFFFF;">
+					<view :class="{loginThreeShow : (login_by_wx == true)}" class="loginThreeHide uni-tag-text--primary font-sm">
+						<image class="login-icon" src="../../static/images/login_wx.png" mode=""></image>
+						<text class="login-icon-text font-sm">微信登录</text>
+					</view>
+				</button>
+			</template>
+			<template v-else>
+				<button @click="wechatlogin" style="background-color: #FFFFFF;">
+					<view :class="{loginThreeShow : (login_by_wx == true)}" class="loginThreeHide uni-tag-text--primary font-sm">
+						<image class="login-icon" src="../../static/images/login_wx.png" mode=""></image>
+						<text class="login-icon-text font-sm">微信登录</text>
+					</view>
+				</button>
+			</template>
 			<!-- #endif -->
 			<!-- #ifndef MP-WEIXIN -->
 			<view :class="{loginThreeShow : (login_by_wx == true)}" class="loginThreeHide uni-tag-text--primary font-sm" @tap="wechatlogin"
@@ -60,19 +84,12 @@
 				<image class="login-icon" src="../../static/images/login_qq.png" mode=""></image>
 				<text class="login-icon-text font-sm">QQ登录</text>
 			</view>
+			<!-- #endif -->
 		</view>
-
 		<view class="flex align-center justify-center">
-
 		</view>
-
-		<view class="flex align-center justify-center login-botttom-text font-sm">
-			登录即代表你已同意<text @click="gotoxieyi" class="xieyi font-sm">《用户协议》</text>
-		</view>
-
 	</view>
 </template>
-
 <script>
 	import uniStatusBar from '@/components/uni-ui/uni-status-bar/uni-status-bar.vue';
 	import otherLogin from '@/components/common/other-login.vue';
@@ -87,6 +104,7 @@
 		},
 		data() {
 			return {
+				agree: false,
 				iswechat: 1,
 				status: "",
 				login_by_wx: false,
@@ -108,7 +126,8 @@
 				keyword: '',
 				unionid: '',
 				nickName: '',
-				avatar: ''
+				avatar: '',
+				canshowcode: false
 			}
 		},
 		onReady: function() {
@@ -161,27 +180,65 @@
 		},
 		computed: {
 			enabled: function() {
-				if (this.username == '' || this.password == '') {
-					return true;
+				if (this.username.length == 11 && this.password.length > 5) {
+					return false;
 				}
-				return false;
+				return true;
 			},
-
 		},
 		methods: {
-			gotoxieyi() {
-				uni.navigateTo({
-					url: '../login/xieyi',
-					success: res => {},
-					fail: () => {},
-					complete: () => {}
-				});
+			username_input(event) {
+
+				if (event.detail.value.length == 11) {
+					this.canshowcode = true;
+				} else {
+					this.canshowcode = false;
+				}
+			},
+			password_input(event) {
+
+			},
+			agreeme() {
+				if (this.agree == true) {
+					this.agree = false;
+				} else {
+					this.agree = true;
+				}
+			},
+			gotoxieyi(item) {
+				//4 
+				//5
+				if (item == '1') {
+					uni.navigateTo({
+						url: '../login/xieyi?type=4',
+						success: res => {},
+						fail: () => {},
+						complete: () => {}
+					});
+				} else {
+					uni.navigateTo({
+						url: '../login/xieyi?type=5',
+						success: res => {},
+						fail: () => {},
+						complete: () => {}
+					});
+				}
+
 			},
 			qqlogin() {
-
+				if (this.agree == false) {
+					uni.showToast({
+						title: '请阅读并同意相关协议',
+						icon: 'none'
+					});
+					return;
+				}
 
 				var that = this;
 
+
+
+				// #ifdef APP-PLUS
 				uni.login({
 					provider: 'qq',
 					success: function(loginRes) {
@@ -191,58 +248,72 @@
 						uni.getUserInfo({
 							provider: 'qq',
 							success: function(infoRes) {
-								console.log(infoRes);
+
 								var nickName = infoRes.userInfo.nickName;
 								var avatarUrl = infoRes.userInfo.avatarUrl;
-								var unionid = infoRes.userInfo.openId;
+								var unionid = infoRes.userInfo.unionid;
+
 								that.thirdlogin(unionid, nickName, avatarUrl, 1, 2);
+
 							}
 						});
 					}
 				});
+				// #endif
+
 
 
 			},
 			wechatlogin() {
+				if (this.agree == false) {
+					uni.showToast({
+						title: '请阅读并同意相关协议',
+						icon: 'none'
+					});
+					return;
+				}
 				// #ifdef MP-WEIXIN
 				// 登录
 				console.log('微信小程序登录');
 				let gData = app.globalData;
 				uni.showLoading({
-					title: '登录中...',
-					mask: false
+					title: '',
+					mask: true
 				});
-				wx.login({
-
+				var that = this;
+				uni.login({
 					success: res => {
 						// 发送 res.code 到后台换取 openId, sessionKey, unionId
 						uni.hideLoading();
-						this.code = res.code;
-						var that = this;
+						that.code = res.code;
 						uni.getUserInfo({
 							success: (info) => {
-
 								var data = JSON.parse(info.rawData);
 								this.nickName = data.nickName;
 								this.avatar = data.avatarUrl;
-
 								uni.request({
-									url: gData.site_url + "Login.GetUnionid",
+									url: gData.site_url + "App.Login.getUnionid",
 									method: 'GET',
 									data: {
-										'code': this.code
+										'code': that.code
 									},
 									success: function(res2) {
-
-										console.log('Login.GetUnionid');
+										var openid = res2.data.data.openid;
 										console.log(res2);
-										that.unionid = res2.data.data.unionid;
-										that.thirdlogin(that.unionid, that.nickName, that.avatar, 2, 3);
+										getApp().globalData.openid = openid;
+										uni.setStorage({
+											key: 'openid',
+											data: openid,
+											success: function() {
+												console.log('openid存入成功');
+											}
+										});
 
+										// #ifdef MP-WEIXIN
+										that.thirdlogin(openid, that.nickName, that.avatar, 2, 3);
+										// #endif			
 									},
-
 								});
-
 							}
 						});
 						// wxa78ad20db2e78eb9
@@ -250,19 +321,19 @@
 				});
 				// #endif
 
-				// #ifndef MP-WEIXIN
+				// #ifdef APP-PLUS
+
 				var that = this;
 
 				uni.login({
 					provider: 'weixin',
 					success: function(loginRes) {
-						 console.log(loginRes);
+						// console.log(loginRes);
 						// 获取用户信息
 						uni.getUserInfo({
 							provider: 'weixin',
 							success: function(infoRes) {
 								console.log(infoRes);
-
 								var nickName = infoRes.userInfo.nickName;
 								var avatarUrl = infoRes.userInfo.avatarUrl;
 								var unionid = infoRes.userInfo.unionId;
@@ -276,12 +347,10 @@
 				// #endif
 			},
 			thirdlogin(unionid, nickName, avatar, type, source) {
-				console.log(unionid, nickName, avatar)
 				uni.showLoading({
-					title: '加载中',
-					mask: false
+					title: '',
+					mask: true
 				});
-
 				let sign = this.sort2url({
 					'openid': unionid,
 					'type': type
@@ -296,7 +365,6 @@
 						'nicename': nickName,
 						'avatar': avatar,
 						'sign': sign,
-
 					},
 					success: res => {
 						console.log(res);
@@ -309,23 +377,35 @@
 						if (parseInt(res.data.data.code) !== 0) {
 							return;
 						}
-
 						// 存入 全局变量
 						app.globalData.userinfo = res.data.data.info[0];
-						setTimeout(function() {
-							let url = '../index/index';
-							let gData = app.globalData;
-							if (gData.login_jump.page != '') {
-								url = gData.login_jump.page;
+						uni.setStorage({
+							key: 'userinfo',
+							data: res.data.data.info[0],
+							success: function() {
+								console.log('succes-存入成功');
 							}
-							uni.reLaunch({
-								url: url,
-							});
-						}, 2000);
+						});
+						uni.setStorage({
+							key: 'vipid',
+							data: res.data.data.info[0].vipid,
+							success: function() {}
+						});
+						let url = '../index/index';
+						let gData = app.globalData;
+						if (gData.login_jump.page != '') {
+							url = gData.login_jump.page;
+						}
+						let pages = getCurrentPages(); // 当前页面
+						let beforePage = pages[pages.length - 2]; // 上一页
+						uni.navigateBack({
+							success: function() {
+								beforePage;
+							},
+						});
 					}
 				});
 			},
-
 			//注册
 			register() {
 				uni.navigateTo({
@@ -333,8 +413,8 @@
 				})
 			},
 			back() {
-				uni.reLaunch({
-					url: "../index/index"
+				uni.navigateBack({
+					delta: 1
 				});
 			},
 			initForm() {
@@ -362,6 +442,10 @@
 			},
 			// 获取验证码
 			getSmsCode() {
+				if (this.username.length != 11) {
+
+					return;
+				}
 				//防止重复获取 
 				if ((this.usernameFlag == this.username) && this.codeTime > 0) {
 					uni.showToast({
@@ -386,9 +470,12 @@
 						// #ifdef MP-WEIXIN
 						env: 'weixin'
 						// #endif
+						// #ifdef H5
+						env: 'H5'
+						// #endif
 					},
 					success: (res) => {
-
+						console.log(res);
 						uni.showToast({
 							icon: 'none',
 							title: res.data.data.msg
@@ -427,24 +514,31 @@
 			},
 			// 字典序排序
 			sort2url(arr1) {
-
 				var newkey = Object.keys(arr1).sort();
 				var newObj = {};
 				for (var i = 0; i < newkey.length; i++) { //遍历newkey数组
 					newObj[newkey[i]] = arr1[newkey[i]]; //向新创建的对象中按照排好的顺序依次增加键值对
 				}
-
 				var text = "";
 				for (var index in newObj) {
 					text = text + index + "=" + newObj[index] + "&";
 				}
 				text = text.substr(0, text.length - 1);
 				text += '&' + app.globalData.sign_key;
-
 				return md5_js.hex_md5(text);
 			},
 			// 提交
 			submit() {
+				if (this.username.length == 0 || this.password.length == 0) {
+					return;
+				}
+				if (this.agree == false) {
+					uni.showToast({
+						title: '请阅读并同意相关协议',
+						icon: 'none'
+					});
+					return;
+				}
 				let url;
 				let data;
 				if (this.loginType == 'captcha') {
@@ -471,15 +565,91 @@
 						pass: this.password,
 					};
 				}
-
 				let that = this;
-
+				uni.showLoading({
+					title: '',
+					mask: true
+				});
+				// #ifdef MP-WEIXIN
+				uni.login({
+					success: res => {
+						// 发送 res.code 到后台换取 openId, sessionKey, unionId
+						uni.hideLoading();
+						that.code = res.code;
+						uni.request({
+							url: getApp().globalData.site_url + "App.Login.getUnionid",
+							method: 'GET',
+							data: {
+								'code': that.code
+							},
+							success: function(res2) {
+								var openid = res2.data.data.openid;
+								console.log(res2);
+								getApp().globalData.openid = openid;
+								//登录处理
+								uni.request({
+									url: url,
+									data: data,
+									success: (res) => {
+										uni.hideLoading();
+										uni.showToast({
+											icon: 'none',
+											title: res.data.data.msg,
+											duration: 2000
+										});
+										if (parseInt(res.data.data.code) !== 0) {
+											return;
+										}
+										console.log(res);
+										// 存入 全局变量
+										app.globalData.userinfo = res.data.data.info[0];
+										uni.setStorage({
+											key: 'userinfo',
+											data: res.data.data.info[0],
+											success: function() {}
+										});
+										uni.setStorage({
+											key: 'vipid',
+											data: res.data.data.info[0].vipid,
+											success: function() {}
+										});
+										setTimeout(function() {
+											let url = '../index/index';
+											let gData = app.globalData;
+											if (gData.login_jump.page != '') {
+												url = gData.login_jump.page;
+											}
+											let pages = getCurrentPages(); // 当前页面
+											let beforePage = pages[pages.length - 2]; // 上一页
+											uni.navigateBack({
+												success: function() {
+													beforePage;
+												}
+											});
+										}, 0);
+									}
+								});
+								
+								uni.setStorage({
+									key: 'openid',
+									data: openid,
+									success: function() {
+										console.log('openid存入成功');
+									}
+								});
+							},
+						});
+					}
+				});
+				// #endif
+				
+				// #ifndef MP-WEIXIN
 				//登录处理
 				uni.request({
 					url: url,
 					data: data,
 					success: (res) => {
-
+						uni.hideLoading();
 						uni.showToast({
 							icon: 'none',
 							title: res.data.data.msg,
@@ -488,31 +658,88 @@
 						if (parseInt(res.data.data.code) !== 0) {
 							return;
 						}
+						console.log(res);
 						// 存入 全局变量
 						app.globalData.userinfo = res.data.data.info[0];
-
+						uni.setStorage({
+							key: 'userinfo',
+							data: res.data.data.info[0],
+							success: function() {}
+						});
+						uni.setStorage({
+							key: 'vipid',
+							data: res.data.data.info[0].vipid,
+							success: function() {}
+						});
 						setTimeout(function() {
 							let url = '../index/index';
 							let gData = app.globalData;
 							if (gData.login_jump.page != '') {
 								url = gData.login_jump.page;
 							}
-
-							uni.reLaunch({
-								url: url,
+							let pages = getCurrentPages(); // 当前页面
+							let beforePage = pages[pages.length - 2]; // 上一页
+							uni.navigateBack({
+								success: function() {
+									beforePage;
+								}
 							});
-						}, 2000);
+						}, 0);
 					}
 				});
-
-
+				// #endif
 			}
-
 		}
 	}
 </script>
 
 <style>
+	page {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.back-image {
+		width: 40rpx;
+		height: 40rpx;
+		margin-left: 20rpx;
+		float: left;
+		margin-top: 20rpx;
+	}
+
+	.reg-btn {
+		position: absolute;
+		left: 40rpx;
+		margin-top: 30rpx;
+		font-size: 26rpx;
+		color: #45DCAC;
+	}
+
+	.login-botttom-text {
+		color: #646464;
+		margin-left: 10rpx;
+		height: 40rpx;
+		line-height: 40rpx;
+
+	}
+
+	.newstate {
+		display: flex;
+		flex-direction: row;
+		margin-left: 20rpx;
+		margin-top: 40rpx;
+		height: 40rpx;
+
+	}
+
+	.agree {
+		width: 30rpx;
+		height: 30rpx;
+		margin-top: 5rpx;
+		margin-left: 10rpx;
+	}
+
 	.login-all-wrap {
 		padding: 0 15rpx;
 	}
@@ -526,22 +753,11 @@
 		display: inline-block;
 	}
 
-	.reg-btn {
-		float: right;
-		/* #ifdef MP-WEIXIN*/
-		margin-top: 0rpx;
-		/* #endif */
-		/* #ifdef APP-PLUS*/
-		margin-top: -90rpx;
-		/* #endif */
-		font-size: 30rpx;
-		color: #646464;
-	}
-
 	.top-wrap button {
 		display: inline-block;
 		background-color: #FFFFFF;
 		overflow: inherit;
+
 	}
 
 	button::after {
@@ -550,6 +766,9 @@
 
 	.captcha-login-btn,
 	.pass-login-btn {
+		/* #ifndef H5 */
+		margin-top: 80rpx;
+		/* #endif */
 		font-size: 30rpx;
 		color: #646464;
 	}
@@ -572,10 +791,9 @@
 		margin-top: 60rpx;
 	}
 
-
 	/*登录按钮部分*/
 	.login-btn-wrap {
-		margin-top: 80rpx;
+		margin-top: 60rpx;
 		height: 90rpx;
 	}
 
@@ -625,9 +843,7 @@
 		color: #646464 !important;
 	}
 
-	.login-botttom-text {
-		color: #646464;
-	}
+
 
 	.xieyi {
 		color: #45DCAC;

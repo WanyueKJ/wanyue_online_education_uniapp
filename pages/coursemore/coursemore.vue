@@ -21,6 +21,7 @@
 							<text v-if="item.paytype == 2" class="pass">密码</text>
 							<text v-if="item.paytype == 1" class="numPrice">
 								 {{'¥' + item.payval}}
+
 							</text>
 						</view>
 					</view>
@@ -62,7 +63,6 @@
 						if(res.data.data.info.length < 1) {
 							// 空空如也
 						}
-						// console.log(res);
 						this.list_info = res.data.data.info;
 						
 					},
@@ -70,8 +70,7 @@
 			},
 			
 			viewCourseInfo(contentCourseId, contentCoursetype){
-				console.log(contentCourseId);
-				console.log(contentCoursetype);
+
 				if (getApp().globalData.userinfo == '') {
 					uni.navigateTo({
 						url: '../login/login'

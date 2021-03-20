@@ -1,6 +1,12 @@
 <template>
 	
 	<view class="liveinfo-wrap">
+		<!-- #ifndef H5 -->
+		<uni-nav-bar @clickLeft="backCourseList" left-icon="back" :border="false" title="直播列表" statusBar>
+		
+		</uni-nav-bar>
+		<!-- #endif -->
+		
 		<!-- 直播课列表 -->
 		<view @click="viewLiveInfo(item.id,item.paytype)" class="live-list" v-for="(item, index) in live_info"  :key="index">
 			<view class="live-list-img-wrap">
@@ -34,10 +40,13 @@
 </template>
 
 <script>
-	
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	const app = getApp();
 	
 	export default {
+		components:{
+			uniNavBar
+		},
 		data() {
 			return {
 				live_info: {}
@@ -47,6 +56,11 @@
 			this.getLiveCourseList();
 		},
 		methods: {
+			backCourseList () {
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			getLiveCourseList(){
 				let gData = app.globalData;
 				uni.request({
@@ -55,7 +69,7 @@
 					data: {
 						'gradeid' : gData.grade_class.id,
 						'type' : 2,
-						'p' : 1
+						'p' : 0
 					},
 					success: res => {
 						if(parseInt(res.data.data.code) !== 0) {
@@ -81,7 +95,7 @@
 				}
 			
 				uni.navigateTo({
-					url: '../live_course_info/live_course_info?courseid=' + liveCourseId +'&paytype='+livetype
+					url: '../../packageB/pages/live_course_info/live_course_info?courseid=' + liveCourseId +'&paytype='+livetype
 				});
 			},
 			

@@ -1,34 +1,31 @@
 <template>
 	<view>
+		
+		<!-- #ifndef H5 -->
 		<uni-nav-bar :border="false" @clickLeft="back" left-icon="back" title="编辑资料">
-			<!-- #ifdef MP-WEIXIN -->
-			<!-- <view class="save-btn2" @click="saveEdit" slot="right">保存</view> -->
-			<!-- #endif -->
-			<!-- #ifndef MP-WEIXIN -->
-			<!-- <view class="save-btn" @click="saveEdit" slot="right">保存</view> -->
-			<!-- #endif -->
+			
 		</uni-nav-bar>
+		<!-- #endif -->
 
 		<!-- 资料区域 -->
 		<view class="main">
 
 			<view @click="photo" class="avatar-wrap">
-				<image class="user-avatar" :src="avatarPath" mode=""></image>
+				<image class="user-avatar" :src="avatarPath" mode="aspectFill"></image>
 				<text class="tishi">点击更换头像</text>
 			</view>
 			<view>
 				<input @input="getUserNickname" class="nickname-wrap" type="text" :value="user_nickname" />
 			</view>
 		</view>
-		
+
 		<button class="pass-login-btn" @click="saveEdit">保存</button>
 	</view>
-
-
 
 </template>
 
 <script>
+	import qiniuUploader from '../../qiniuUploader.js';
 	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	const app = getApp();
 
@@ -41,6 +38,7 @@
 				userInfo: {},
 				avatarPath: '', //头像路径
 				user_nickname: '', //昵称
+				avatar_name:''
 			}
 		},
 		onLoad(option) {
@@ -51,10 +49,9 @@
 				})
 				return;
 			}
-
 			//id 头像 昵称
-			this.avatarPath = option.avatar;
-			this.user_nickname = option.user_nickname;
+			this.avatarPath = getApp().globalData.userinfo.avatar;
+			this.user_nickname = getApp().globalData.userinfo.user_nickname;
 		},
 		methods: {
 			back() {
@@ -66,41 +63,85 @@
 			photo() {
 				let gData = app.globalData;
 				let that = this;
-
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album', 'camera'], //从相机/相册选择
 					success: function(res) {
-
-
 						//上传图片到服务器并返回图片地址(这里不用七牛)
 						let tempFilePaths = res.tempFilePaths;
 						let that2 = that;
-						uni.uploadFile({
-							url: gData.site_url + 'User.UploadImg',
-							filePath: tempFilePaths[0],
-							name: 'file',
-							formData: {
-								'uid': gData.userinfo.id,
-								'token': gData.userinfo.token,
+						var path = tempFilePaths[0];
+						uni.request({
+							url: getApp().globalData.site_url + 'Upload.GetQiniuToken',
+							method: 'POST',
+							data: {
+								'uid': getApp().globalData.userinfo.id,
+								'token': getApp().globalData.userinfo.token
 							},
-							success: function(uploadFileRes) {
-								that2.avatarPath = "https://" + JSON.parse(uploadFileRes.data).path;
+							success: res2 => {
+								uni.hideLoading();
+								if (res2.data.data.code == 0) {
+									var QiNiutoken = that.decypt(res2.data.data.info[0].token);
+									var name = 'UNIAPPicon_edu_kaiyuan' + that.getTime() + 'icon.png';
+									qiniuUploader.upload(path, res => {
+										uni.showToast({
+											title: '上传成功',
+											icon: 'none'
+										});
+										that.avatarPath = res.imageURL;
+										that.avatar_name = name;
+									}, error => {
+										uni.showToast({
+											title: '上传失败，请重试',
+											icon: 'none'
+										});
+										
+									}, {
+										region: 'ECN',
+										domain: getApp().globalData.qiniuimageurl,
+										key: name,
+										uptoken: QiNiutoken,
+									});
+								}
 							},
-							fail: function() {
+							fail() {
+								uni.hideLoading();
 								uni.showToast({
-									'icon': 'none',
-									'title': '上传失败'
+									title: '提交失败',
+									icon: 'none'
 								});
-								return;
-							}
+							},
 						});
-
 					},
-
 				});
-
+			},
+			getTime() {
+				let yy = new Date().getFullYear();
+				let mm = new Date().getMonth() + 1;
+				let dd = new Date().getDate();
+				let hh = new Date().getHours();
+				let mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes();
+				let ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds();
+				return yy + mm + dd + hh + mf + ss;
+			},
+			decypt(code) {
+				var newcode = '';
+				var str = '1ecxXyLRB.COdrAi:q09Z62ash-QGn8VFNIlb=fM/D74WjS_EUzYuw?HmTPvkJ3otK5gp&';
+				for (var i = 0; i < code.length; i++) {
+					var codeIteam = code[i];
+					for (var j = 0; j < str.length; j++) {
+						var stringIteam = str[j];
+						if (codeIteam == stringIteam) {
+							if (j == 0) {
+								newcode += str[str.length - 1];
+							} else {
+								newcode += str[j - 1];
+							}
+						}
+					}
+				}
+				return newcode;
 			},
 			getUserNickname(e) {
 				this.user_nickname = e.detail.value;
@@ -108,7 +149,6 @@
 			// 保存资料
 			saveEdit() {
 				let gData = app.globalData;
-				console.log(this.user_nickname);
 				//更新用户资料到
 				uni.request({
 					url: gData.site_url + 'User.UpUserInfo',
@@ -122,25 +162,38 @@
 						})
 					},
 					success: res => {
-						console.log(res);
+						if (res.data.data.code == 0) {
+							getApp().globalData.userinfo.user_nickname = res.data.data.info[0].user_nickname;
+							getApp().globalData.userinfo.avatar = res.data.data.info[0].avatar;
+							uni.setStorage({
+								key: 'userinfo',
+								data: getApp().globalData.userinfo,
+								success: function(res) {
+									
+								}
+							});
+							setTimeout(() => {
+								uni.navigateBack({
+									delta: 1
+								});
+							}, 500);
+						}
 						uni.showToast({
 							icon: 'none',
 							title: res.data.data.msg
 						});
-						uni.navigateBack({
-
-						});
 						if (parseInt(res.data.data.code) !== 0) {
 							return;
-						}
+						}						
 					},
-					fail: () => {},
-
+					fail: () => {
+						uni.showToast({
+							title: '网络错误',
+							icon:'none'
+						});
+					},
 				});
-
 			},
-
-
 		}
 	}
 </script>

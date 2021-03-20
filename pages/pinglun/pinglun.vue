@@ -1,6 +1,10 @@
 <template>
 	<view class="pingjia-all-wrap">
 		
+		<!-- #ifndef H5 -->
+		<uni-nav-bar @clickLeft="back" left-icon="back" title="评价"></uni-nav-bar>
+		<!-- #endif -->
+		
 		<view class="teacher-wrap">
 			<text class="course-title">{{courseData.title}}</text>
 			<view class="teacher-avatar-name">
@@ -40,9 +44,14 @@
 </template>
 
 <script>
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
+	
 	const app = getApp();
 	
 	export default {
+		components:{
+			uniNavBar
+		},
 		data() {
 			return {
 				xingarr: [
@@ -82,6 +91,11 @@
 			this.courseData = option;
 		},
 		methods: {
+			back(){
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			checkxing(index){
 				if(this.xingarr[index].check === false) {
 					for (let idx in this.xingarr) {

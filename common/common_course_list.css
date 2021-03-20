@@ -31,11 +31,14 @@
 		position: absolute;
 		left: 0rpx;
 		top: 2rpx;
+		/* #ifdef APP-PLUS */
+		top: 0rpx;
+		/* #endif */
 		width: 80rpx;
 		height: 40rpx;
 		line-height: 40rpx;
 		text-align: center;
-		border-radius: 16rpx 0 16rpx 0;
+		border-radius: 8rpx 0 8rpx 0;
 		background-color: rgba(0, 0, 0, 0.6);
 		font-size: small;
 		color: #DBDBDB;

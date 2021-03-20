@@ -1,5 +1,12 @@
 <template>
 	<view class="conetentinfo-wrap">
+		
+		<!-- #ifndef H5 -->
+		<uni-nav-bar @clickLeft="backCourseList" left-icon="back" :border="false" title="精选内容" statusBar>
+		
+		</uni-nav-bar>
+		<!-- #endif -->
+		
 		<!-- 内容列表 -->
 		<view class="course-wrap">
 			<view @click="viewContentInfo(item.id,item.paytype)" class="live-list" v-for="(item, index) in list_info"  :key="index">
@@ -32,9 +39,13 @@
 </template>
 
 <script>
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	const app = getApp();
 	
 	export default {
+		components:{
+			uniNavBar
+		},
 		data() {
 			return {
 				list_info: {}
@@ -44,6 +55,11 @@
 			this.getContentCourseList();
 		},
 		methods: {
+			backCourseList(){
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			getContentCourseList(){
 				let gData = app.globalData;
 				uni.request({
@@ -62,7 +78,6 @@
 						if(res.data.data.info.length < 1) {
 							// 空空如也
 						}
-						console.log(res);
 						this.list_info = res.data.data.info;
 						
 					},
@@ -78,7 +93,7 @@
 					return;
 				}
 				uni.navigateTo({
-					url: '../content-info/content-info?courseid=' + contentCourseId + '&paytype=' + contentCoursetype,
+					url: '../../packageB/pages/content-info/content-info?courseid=' + contentCourseId + '&paytype=' + contentCoursetype,
 				});
 			},
 			

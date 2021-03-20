@@ -1,0 +1,769 @@
+<!-- 直播间页面 -->
+<template>
+	<view class="live-all-wrap">
+		<!-- 直播窗口 -->
+		<template v-if="phonetype == 1">
+			<view class="video-wrap">
+				<TestText ref="videoAdnroid" tel="xxxxxx" class="video-wrap"></TestText>
+			</view>
+		</template>
+		<template v-else-if="phonetype == 2">
+			<view class="video-wrap">
+				<dc-TestComponent ref="videoIos" appid="xxxxxx" class="video-wrap"></dc-TestComponent>
+			</view>
+		</template>
+		<template v-else-if="phonetype == 3">
+			<view id="remoteContainer" ref="remotecontainer">
+				<view id="subremoteContainer" class="video-wrap"></view>
+			</view>
+		</template>
+		<template v-else>
+			<!-- #ifdef MP-WEIXIN -->
+			<live-player id="player" src="wechatliveurl" mode="RTC" bindstatechange="playerStateChange" object-fit="fillCrop" />
+			<!-- #endif -->
+		</template>
+		<!-- 聊天区域 -->
+		<!-- <view class="talk-wrap"> -->
+
+		<view style="width: 750px; height: 90p; flex-direction: row; background-color: #FFFFFF;">
+			<view style="height: 90px;width: 250px; align-items: center;" v-for="(item,index) in tabBars" :key="index" @click="changeXXK(index)"
+			 :ref="`tab${index}`">
+				<text style="font-size: 30px; height: 90px; width: 100px;text-align: center; line-height: 90px; border-bottom-width: 5px; border-style: solid;"
+				 :style="{'color':tabIndex ===index?'#3BDCA8':'#A9A5A0','border-color':tabIndex === index? '#3BDCA8':'#FFFFFF'}">{{item.name}}</text>
+			</view>
+		</view>
+
+		<view  :current="tabIndex" @change="onChangeTab" :style="{height : scrollH + 'px'}" style="width: 750px;background-color: #F4F5F6;">
+			<view v-if="tabIndex ==0" class="zhinan">
+				<text class="zhinantext">听课指南</text>
+			</view>
+			<view v-if="tabIndex ==0">
+				<scroll-view :style="{height : scrollH+ 'px'}" class="scroll1" scroll-y="true" :scroll-into-view="scrollInto"
+				 scroll-with-animation style="position: absolute;left:0; top: 0; 
+			        right: 0; bottom: 10rpx;">
+					<block v-for="(item,index) in list" :key="index">
+						<view v-if="item.user_type == 1" :id="'chat' +index" class="messagebottom">
+							<image :src="item.avatar" class="rounded"></image>
+							<view class="message">
+								<text class="user_nickname">{{item.user_nickname}}</text>
+								<text class="textmessage">{{item.content}}</text>
+							</view>
+						</view>
+					</block>
+				</scroll-view>
+			</view>
+			<view v-if="tabIndex ==1">
+				<scroll-view :style="{height : scrollH + 'px'}" class="scroll1" scroll-y="true" :scroll-into-view="scrollInto"
+				 scroll-with-animation style="position: absolute;left:0; top: 0; 
+			        right: 0; bottom: 10rpx; ">
+					<block v-for="(item,index) in list" :key="index">
+						<!-- :style=" ? 'flex-direction: row-reverse;' : '' -->
+						<template v-if="item.uid === myID">
+							<view :id="'chat' +index" class="messagebottom2">
+								<image :src="item.avatar" class="rounded"></image>
+								<view class="message">
+									<text class="textmessage">{{item.content}}</text>
+								</view>
+								<text v-if="item.msgtype == '1'" class="wen">问</text>
+							</view>
+						</template>
+						<template v-else>
+							<view :id="'chat' +index" class="messagebottom">
+								<image :src="item.avatar" class="rounded"></image>
+								<view class="message">
+									<text class="user_nickname">{{item.user_nickname}}</text>
+									<text class="textmessage">{{item.content}}</text>
+								</view>
+								<text v-if="item.msgtype == '1'" class="wen2">问</text>
+							</view>
+
+						</template>
+					</block>
+				</scroll-view>
+			</view>
+
+			<view v-if="tabIndex ==2">
+				<scroll-view :style="{height : scrollH + 100 + 'px'}" class="scroll1" scroll-y="true" :scroll-into-view="scrollInto"
+				 scroll-with-animation style="position: absolute;left:0; top: 0; 
+				    right: 0; bottom: 10rpx; ">
+					<block v-for="(item,index) in list" :key="index">
+						<template v-if="item.uid === myID">
+							<view v-if="item.msgtype == '1'" :id="'chat' +index" class="messagebottom2">
+								<image :src="item.avatar" class="rounded"></image>
+								<view class="message">
+									<text class="textmessage">{{item.content}}</text>
+								</view>
+								<text class="wen">问</text>
+							</view>
+						</template>
+						<template v-else>
+							<view v-if="item.msgtype == '1'" :id="'chat' +index" class="messagebottom">
+								<image :src="item.avatar" class="rounded"></image>
+								<view class="message">
+									<text class="user_nickname">{{item.user_nickname}}</text>
+									<text class="textmessage">{{item.content}}</text>
+								</view>
+								<text class="wen2">问</text>
+							</view>
+						</template>
+					</block>
+				</scroll-view>
+			</view>
+		</view>
+		<template v-if="tabIndex != 2">
+			<view class="inputbottom">
+				<view class="inputclass">
+					<text class="send" @click="submit">发送</text>
+					<view class="inputborder">
+						<input ref="input1" @input='inputing' type="text" confirm-type="send" v-model="content" class="input"
+						 placeholder="说点什么..." />
+						<view class="wen-btn-wrap">
+							<view @click="question" class="duihao-wrap">
+								<image v-if="isQue == true" class="duihao-img" src="../../static/images/duihao.png" mode="aspectFill"></image>
+								<image v-if="isQue == false" class="duihao-img" src="../../static/images/questionno.png" mode="aspectFill"></image>
+							</view>
+							<text class="tiwen">提问</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</template>
+	</view>
+</template>
+
+<script>
+	//import io from '@hyoga/uni-socket.io';
+	import md5_js from "@/static/js/md5.js";
+	// #ifdef H5
+	import AgoraRTCH5 from "./AgoraRTCSDK-3.0.1.js";
+	// #endif
+	// #ifdef MP-WEIXIN
+	import AogoraWechat from "./Agora_Miniapp_SDK_for_WeChat.js"
+	// #endif
+
+	const app = getApp();
+	//连接socket
+	const socket = null;
+	// = io((app.globalData.socket_url), {
+	// 	query: {},
+	// 	transports: ['websocket', 'polling'],
+	// 	timeout: 5000
+	// });
+
+	export default {
+
+		data() {
+			return {
+				scrollH: 0,
+				tabIndex: 0,
+				tabBars: [{
+					name: "讲师区"
+				}, {
+					name: "讨论区"
+				}, {
+					name: "问答区"
+				}],
+				scrollInto: "",
+				scrollTop: "",
+				list: [],
+				isConnectSocket: false, //是否连接socket
+				liveInfo: {
+					'liveuid': '',
+					'courseid': ''
+				},
+				userInfo: {},
+				isQue: false,
+				//直播添加
+				agoraappid: '',
+				agoramRoomName: '',
+				agorauid: '',
+				phonetype: 0,
+				wechatliveurl: '',
+				myID: '',
+				reloadinput:1
+
+			}
+		},
+		//agora离开通道
+		onUnload: function() {
+			// #ifdef H5
+			AgoreRTCH5.client().leave();
+			// #endif
+			// #ifdef MP-WEIXIN
+			AogoraWechat.Client().level();
+			// #endif
+		},
+		onReady() {
+
+			uni.getSystemInfo({
+				success: (res) => {
+					this.scrollH = res.screenHeight - 120;
+				}
+			})
+			this.pageToBottom();
+		},
+		onLoad(option) {
+
+			// #ifdef MP-WEIXIN
+			console.log("运行在小程序");
+			this.phonetype = 4;
+			// #endif
+			// #ifdef H5
+			console.log("运行在H5");
+			this.phonetype = 3;
+			// #endif
+			// #ifdef APP-PLUS
+			if (uni.getSystemInfoSync().platform === 'android') {
+				console.log("运行在android");
+				this.phonetype = 1;
+			} else if (uni.getSystemInfoSync().platform === 'ios') {
+				this.phonetype = 2;
+				console.log("运行在ios");
+			}
+			// #endif
+			this.userInfo = app.globalData.userinfo;
+			this.liveInfo.liveuid = option.liveuid;
+			this.liveInfo.courseid = option.courseid;
+			// 接收直播liveuid courseid 
+			this.enterLive(option.liveuid, option.courseid);
+
+			socket.emit('conn', {
+				uid: this.userInfo.id, //进入该房间的学生id 假如等于下面的房间id, 那即为老师进入房间
+				roomnum: this.liveInfo.liveuid, //房间号,即老师id
+				nickname: this.userInfo.user_nickname,
+				stream: this.liveInfo.liveuid + '_' + this.liveInfo.courseid + '_0', //老师id_课程id_课时id
+				equipment: 'uni-app', //环境
+				token: this.userInfo.token,
+				avatar: this.userInfo.avatar,
+				sign: 0, //签名 默认为0
+				usertype: this.userInfo.type, //0学生, 1老师
+			});
+			socket.on('conn', (data) => {
+				console.log('ws 已连接 ' + data);
+				this.isConnectSocket = true; //已连接
+			});
+			let that = this;
+			//监听服务端消息
+			socket.on('broadcastingListen', (data) => {
+				let msgInfo = JSON.parse(data).msg[0];
+				if (msgInfo.content != undefined) {
+					this.list.push(msgInfo);
+				}
+				// console.log(msgInfo);
+				// 滚动到底部
+				this.pageToBottom();
+
+			});
+			this.myID = app.globalData.userinfo.id;
+
+		},
+		methods: {
+
+		async changeXXK(index) {
+				this.tabIndex = index;
+
+				return this.tabIndex;
+			},
+			onChangeTab(e) {
+				console.log('切换当前索引' + e.detail.current);
+				this.tabIndex = e.detail.current
+			},
+			decypt(code) {
+				var newcode = '';
+				var str = '1ecxXyLRB.COdrAi:q09Z62ash-QGn8VFNIlb=fM/D74WjS_EUzYuw?HmTPvkJ3otK5gp&';
+				for (var i = 0; i < code.length; i++) {
+					var codeIteam = code[i];
+					for (var j = 0; j < str.length; j++) {
+						var stringIteam = str[j];
+						if (codeIteam == stringIteam) {
+							if (j == 0) {
+								newcode += str[j];
+							} else {
+								newcode += str[j - 1];
+							}
+						}
+					}
+				}
+				return newcode;
+			},
+			agoraWechat(agoraappid, agorastream, uid) {
+				//在小程序里编写代码
+				setTimeout(() => {
+					//初始化
+					let client = AogoraWechat.Client();
+					client.setRole('audience');
+					client.init(this.decypt(agoraappid), () => {
+						console.log('小程序初始化成功');
+						//加入通道
+						client.join('', agorastream, uid, () => {
+							console.log('加入通道成功');
+						}, e => {
+							console.log('加入通道失败')
+						});
+
+					}, e => {
+						console.log('小程序初始化失败');
+					});
+
+					//订阅远端流
+					client.on("stream-added", e => {
+						client.subscribe(evt.uid, (res) => {
+							console.log("订阅视频流成功playUrl" + res);
+							this.wechatliveurl = res;
+						}, (err) => {
+							console.log("订阅视频流错误", err);
+							uni.showToast({
+								icon: "none",
+								title: "订阅视频流错误"
+							});
+						});
+					});
+					//远端流移除
+					client.on("stream-removed", e => {
+						console.log('远端流移除');
+					});
+					//重连机制
+					client.rejoin('', agorastream, uid, '', () => {
+						console.log('重连加入通道成功');
+					}, e => {
+						console.log('重连加入通道失败');
+					});
+
+
+				}, 0);
+			},
+			agoraH5(agoraappid, agorastream) {
+
+				var _this = this;
+				setTimeout(() => {
+					// var isgo = AgoreRTCH5.checkSystemRequirements();
+					// if (!isgo) {
+					// 	alert('当前浏览器不支持，请更换浏览器或者升级该浏览器，如:谷歌浏览器');
+					// }
+					// 4ff617f955ec4e5f89414cc06855cd46
+					//demoChannel1
+
+					let client = AgoraRTCH5.createClient({
+						mode: "live",
+						codec: "vp8",
+					});
+					AgoraRTCH5.client = client;
+					client.init(_this.decypt(agoraappid));
+					client.setClientRole('audience');
+					// 加入频道
+					client.join("", agorastream, null, (uid) => {
+						console.log("H5加入通道成功")
+					}, null);
+					// 有远端用户发布流时进行订阅 
+					client.on("stream-added", function(evt) {
+						client.subscribe(evt.stream, null);
+					});
+					// 订阅成功后播放主播的流
+					client.on("stream-subscribed", function(evt) {
+						let stream = evt.stream;
+						let streamId = String(stream.getId());
+						console.log("订阅成功后播放主播的流streamId：" + streamId)
+						//let streamview = document.createElement("view");
+						let streamview = document.getElementById("subremoteContainer")
+						streamview.id = streamId;
+						//streamview.style.transform = "rotateY(180deg)";
+						document.getElementById("remoteContainer").appendChild(streamview);
+						stream.play(streamId);
+					});
+					// 远端用户取消发布流时，关闭及移除对应的流。
+					client.on("stream-removed", function(evt) {
+						let stream = evt.stream;
+						let streamId = String(stream.getId());
+						stream.close();
+						console.log("远端用户取消发布流时，关闭及移除对应的流。");
+
+					});
+					// 远端用户离开频道时，关闭及移除对应的流。
+					client.on("peer-leave", function(evt) {
+						let stream = evt.stream;
+						let streamId = String(stream.getId());
+						stream.close();
+						console.log("远端用户离开频道时，关闭及移除对应的流。");
+					});
+				}, 0);
+
+			},
+			// 进入直播
+			enterLive(liveuid, courseid) {
+				var _this = this;
+				let gData = app.globalData;
+				_this.agorauid = gData.userinfo.id;
+				//console.log(courseid);
+				//console.log(liveuid);
+				uni.request({
+					url: gData.site_url + 'Live.Enter',
+					method: 'GET',
+					data: {
+						'liveuid': liveuid,
+						'courseid': courseid,
+						'lessonid': '',
+						'token': gData.userinfo.token,
+						'uid': gData.userinfo.id,
+					},
+					success: res => {
+						console.log(res);
+						_this.agoraappid = res.data.data.info[0].sound_appid,
+							_this.agoramRoomName = res.data.data.info[0].stream,
+							console.log("获取数据agoraappid：" + _this.agoraappid);
+						console.log("获取数据agoramRoomName：" + _this.agoramRoomName);
+						if (_this.phonetype == 2) {
+							console.log('接口返回进入ios')
+							setTimeout(() => {
+								_this.$nextTick(() => {
+									_this.$refs.videoIos.focus({
+										'appid': _this.agoraappid,
+										'mRoomName': _this.agoramRoomName,
+										'uid': gData.userinfo.id
+									});
+								});
+							}, 0);
+						} else if (_this.phonetype == 1) {
+							console.log('接口返回进入android')
+
+							setTimeout(() => {
+								_this.$nextTick(() => {
+									_this.$refs.videoAdnroid.clearTel(
+										_this.agoraappid + '声' + _this.agoramRoomName + '网' + gData.userinfo.id
+									);
+								});
+							}, 0);
+
+						} else if (_this.phonetype == 3) {
+							console.log('接口返回进入H5')
+							_this.agoraH5(_this.agoraappid, _this.agoramRoomName);
+						} else if (_this.phonetype == 4) {
+							_this.agoraWechat(_this.agoraappid, _this.agoramRoomName, gData.userinfo.id)
+						}
+					}
+				});
+			},
+			inputing(event) {
+				// this.content = event.value;
+			},
+			//发送消息
+			submit(data) {
+				if (this.content === '') {
+					return uni.showToast({
+						title: '消息不能为空',
+						icon: 'none'
+					});
+				}
+				this.$refs.input1.blur();
+				//清空输入框
+				// var newcontent = this.content;
+				// this.content = '';
+				console.log('发送消息');
+				let userInfo = app.globalData.userinfo;
+				let msgtype = (this.isQue === true) ? "1" : "0";
+
+				//发送消息
+				let obj = {
+					"msg": [{
+						"_method_": "SendMsg",
+						"action": "0",
+						"token": userInfo.token,
+						"uid": '' + userInfo.id,
+						"user_nickname": '' + userInfo.user_nickname,
+						"avatar": '' + userInfo.avatar,
+						"liveuid": '' + this.liveInfo.liveuid,
+						"content": '' + this.content,
+						"equipment": "uni-app",
+						"create_time": Math.floor((new Date()).getTime().toString() / 1000),
+						"msgtype": msgtype
+					}],
+					"retcode": "000000",
+					"retmsg": "OK"
+				};
+
+				if (this.isConnectSocket == true) {
+					socket.emit('broadcast', obj);
+					this.tabIndex = 1;
+					let gData = app.globalData;
+					let liveuid = this.liveInfo.liveuid;
+					let courseid = this.liveInfo.courseid;
+					// 签名
+					let sign = this.sort2url({
+						'uid': this.userInfo.id,
+						'liveuid': liveuid,
+						'courseid': courseid,
+						'lessonid': '0',
+						'type': '0',
+						'content': this.content,
+						'url': '',
+						'user_type': this.userInfo.type,
+					});
+					//记录聊天信息
+					uni.request({
+						url: gData.site_url + 'Live.SetChat',
+						method: 'GET',
+						data: {
+							'uid': this.userInfo.id,
+							'token': this.userInfo.token,
+							'liveuid': liveuid,
+							'courseid': courseid,
+							'lessonid': 0,
+							'type': 0,
+							'content': this.content,
+							'url': '',
+							'length': 0,
+							'status': msgtype,
+							'user_type': this.userInfo.type,
+							'sign': sign
+						},
+						success: res => {
+							// console.log(res);
+							// this.content = '';
+						},
+						fail: () => {
+							uni.showToast({
+								icon: 'none',
+								title: '网络错误'
+							});
+						},
+					});
+				}
+			},
+			question(isQue) {
+
+				if (this.isQue == false) {
+					// 切换到问答区
+					// this.tabIndex = 2;
+					this.isQue = true;
+				} else {
+					// this.tabIndex = 0;
+					this.isQue = false;
+				}
+			},
+			// 字典序排序
+			sort2url(arr1) {
+				var newkey = Object.keys(arr1).sort();
+				var newObj = {};
+				for (var i = 0; i < newkey.length; i++) { //遍历newkey数组
+					newObj[newkey[i]] = arr1[newkey[i]]; //向新创建的对象中按照排好的顺序依次增加键值对
+				}
+
+				var text = "";
+				for (var index in newObj) {
+					text = text + index + "=" + newObj[index] + "&";
+				}
+				text = text.substr(0, text.length - 1);
+				text += '&' + app.globalData.sign_key;
+				return md5_js.hex_md5(text);
+			},
+
+			// 滚动到底部
+			pageToBottom() {
+				let lastIndex = this.list.length - 1;
+
+				if (lastIndex < 0) {
+					return;
+				}
+
+				// 大坑, vue采用虚拟dom, 刚发送消息时最后一条dom元素是取不到的!!! 必须用异步等元素渲染
+				var _this = this;
+				setTimeout(() => {
+					_this.scrollInto = 'chat' + lastIndex;
+				}, 500);
+
+			},
+		},
+
+	}
+</script>
+
+
+<style>
+	.live-all-wrap {
+		background-color: #F4F5F6;
+	}
+
+	.video-wrap {
+		width: 750px;
+		height: 400px;
+		background-color: #000000;
+	}
+
+	.swpier {}
+
+	.rounded {
+		margin-top: 20px;
+		width: 80px;
+		height: 80px;
+		border-radius: 40px;
+	}
+
+	.messagebottom {
+		/* align-items: flex-start; */
+		/* padding: 0 20px;
+		margin: 10px 0; */
+		flex-direction: row;
+
+	}
+
+	.messagebottom2 {
+		flex-direction: row-reverse;
+	}
+
+	.message {
+		flex-direction: column;
+	}
+
+	.user_nickname {
+		margin-top: 20px;
+		padding: 10px;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.scroll1 {
+		width: 750px;
+
+
+		/* position: fixed; */
+		/* top: 500px; */
+		/* bottom: 100px; */
+
+	}
+
+	.textmessage {
+		margin-top: 20px;
+		padding: 20px;
+		border-radius: 8px;
+		font-size: 30px;
+		font-weight: normal;
+		max-width: 450px;
+		background-color: #34D695;
+		color: #FFFFFF;
+	}
+
+
+	.inputbottom {
+		height: 130px;
+		background-color: #FFFFFF;
+		position: fixed;
+		bottom: 0px;
+		width: 750px;
+
+	}
+
+	.inputclass {
+		flex-direction: row;
+		height: 130px;
+		width: 750px;
+
+	}
+
+	.inputborder {
+		position: absolute;
+		margin-top: 20px;
+		bottom: unset;
+		height: 80px;
+		left: 20px;
+		right: 140px;
+		background-color: #F4F5F6;
+		border-radius: 40px;
+	}
+
+	.input {
+		position: absolute;
+
+		bottom: unset;
+		height: 80px;
+		left: 20px;
+		right: 100px;
+		line-height: 2em;
+		color: #000000;
+		font-size: 30px;
+		border-radius: 40px;
+		padding-right: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.send {
+		position: absolute;
+		right: 30px;
+		color: #34D695;
+		font-size: 35px;
+		margin-top: 40px;
+	}
+
+	.tiwen {
+		font-size: 25px;
+		position: absolute;
+		right: 5px;
+		margin-top: 8px;
+
+	}
+
+	.wen-btn-wrap {
+		width: 100px;
+		height: 50px;
+		position: absolute;
+		right: 20px;
+		margin-top: 15px;
+		line-height: 70px;
+		border-radius: 0 50px 50px 0;
+
+		/* background-color: #F5F5F5; */
+	}
+
+	.duihao-img {
+		width: 30px;
+		height: 30px;
+	}
+
+	.duihao-wrap {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		margin-top: 8px
+	}
+
+	.wen {
+		top: 20px;
+		margin-right: 10px;
+		margin-top: 20px;
+		background-color: #34D695;
+		color: #FFFFFF;
+		width: 40px;
+		height: 37px;
+		font-size: 30px;
+		text-align: center;
+		align-items: center;
+	}
+
+	.wen2 {
+		top: 60px;
+		margin-left: 10px;
+		margin-top: 60px;
+		background-color: #34D695;
+		color: #FFFFFF;
+		width: 40px;
+		height: 37px;
+		font-size: 30px;
+		text-align: center;
+		align-items: center;
+	}
+
+	.zhinan {
+		background-color: #FFFFFF;
+		margin-top: 20px;
+		margin-left: 40px;
+		margin-right: 40px;
+		height: 80px;
+		border-radius: 10px;
+	}
+
+	.zhinantext {
+		font-size: 35px;
+		height: 80px;
+		padding-left: 20px;
+		padding-top: 20px;
+	}
+</style>

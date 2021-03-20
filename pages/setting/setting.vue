@@ -1,6 +1,13 @@
 <template>
 	<view class="setting-all-wrap">
 		
+		
+		<!-- #ifndef H5 -->
+		<uni-nav-bar @clickLeft="back" left-icon="back" :border="false" title="设置" statusBar>
+		
+		</uni-nav-bar>
+		<!-- #endif -->
+		
 		<view class="touce-wrap">
 			<view @click="touchMe" class="touce-item">
 				<text class="touch_txt">联系我们</text>
@@ -24,15 +31,25 @@
 </template>
 
 <script>
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
+	
 	const app = getApp();
 	
 	export default {
+		components:{
+			uniNavBar
+		},
 		data() {
 			return {
 				cacheSize: 0
 			}
 		},
 		methods: {
+			back(){
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			touchMe(){
 				uni.navigateTo({
 					url: '../lianxi-we/lianxi-we',

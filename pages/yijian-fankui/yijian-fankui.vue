@@ -1,6 +1,11 @@
 <template>
 	<view>
 		
+		<!-- #ifndef H5 -->
+		<uni-nav-bar @clickLeft="back" left-icon="back" :border="false" title="意见反馈" onlive>
+		</uni-nav-bar>
+		<!-- #endif -->	
+		
 		<view class="yijian-wrap">
 			<textarea class="yijian-txt" v-model="yijian" placeholder="请输入您的反馈内容(最多500字)" placeholder-style="padding-top: 10rpx; font-size: 26rpx; color:#969696;" />
 			<view @click="photo" class="img-wrap">
@@ -19,9 +24,13 @@
 
 <script>
 	
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	const app = getApp();
 	
 	export default {
+		components:{
+			uniNavBar
+		},
 		data() {
 			return {
 				imgPath: '', //意见图片路径
@@ -39,6 +48,11 @@
 			
 		},
 		methods: {
+			back() {
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			//上传
 			photo(){
 				let gData = app.globalData;

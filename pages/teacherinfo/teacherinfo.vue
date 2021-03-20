@@ -39,8 +39,7 @@
 			<swiper :current="tabIndex" class="swiper-box" :style="{height:scrollH+'px'}" @change="onChangeTab">
 				<!-- 简历 -->
 			    <swiper-item class="teacher-info-item">
-			        <scroll-view scroll-y :style="'height:' + scrollH+'px;'"
-					@scrolltolower="loadmoreEvent">
+			        <scroll-view scroll-y :style="'height:' + scrollH+'px;'">
 					 <view class="teacher-item-wrap">
 						 <view class="finish-school ttinfo-item">
 						 	<view class="ttinfo-title">毕业院校</view>
@@ -226,7 +225,6 @@
 			},
 			//关注/取消老师
 			focus(touid){
-				console.log(3333);
 				let gData = app.globalData;
 				uni.request({
 					url: gData.site_url + 'User.SetAttent',
@@ -293,7 +291,6 @@
 			},
 			// 查看学员
 			viewstu(touid){
-				console.log(touid);
 				uni.navigateTo({
 					url: '../mystu/mystu?touid=' + touid,
 				});
@@ -305,35 +302,31 @@
 					url: '../edit_cv/edit_cv?touid=' + touid,
 				});	
 			},
-			viewLiveInfo(liveCourseId,sorttype){
-					if(getApp().globalData.userinfo == '') {
-						uni.navigateTo({
-							url:'../login/login'
-						})
-						return;
-					}
-					//套餐
-				if(sorttype == undefined){
+			
+			viewLiveInfo(liveCourseId, sorttype) {
+			
+				//套餐
+				if (sorttype == undefined) {
+			
 					uni.navigateTo({
-						url: '../taocaninfo/taocaninfo?courseid=' + liveCourseId
+						url: '../../packageB/pages/taocaninfo/taocaninfo?courseid=' + liveCourseId
 					});
 				}
 				//
-				else if(sorttype == 0){
+				else if (sorttype == 0) {
 					uni.navigateTo({
-						url: '../content-info/content-info?courseid=' + liveCourseId
+						url: '../../packageB/pages/content-info/content-info?courseid=' + liveCourseId
 					});
-				}
-				else if(sorttype == 1){
+				} else if (sorttype == 1) {
 					uni.navigateTo({
-						url: '../courseinfo/courseinfo?courseid=' + liveCourseId
+						url: '../../packageB/pages/courseinfo/courseinfo?courseid=' + liveCourseId
 					});
-				}
-				else
+				} else
 					uni.navigateTo({
-						url: '../live_course_info/live_course_info?courseid=' + liveCourseId
+						url: '../../packageB/pages/live_course_info/live_course_info?courseid=' + liveCourseId
 					});
-				},
+			},
+			
 		}
 	}
 </script>
@@ -361,11 +354,13 @@
 	
 	.live-c-title {
 		line-height: 35rpx;
+		/* #ifdef APP-PLUS */
+		line-height: 39rpx;
+		/* #endif */
 		height: 40%;
 	}
 	
 	.live-teacher-price {
-		margin-top: 10rpx;
 	}
 	
 	.price-wrap {
@@ -487,7 +482,7 @@
 		min-height: 50rpx;
 		margin-top: 10rpx;
 		color: #C7C7C7;
-		font-size: small;
+		font-size: 28rpx;
 	}
 	
 	.edit-cv-btn {
@@ -504,6 +499,11 @@
 		font-size: 28rpx;
 		border-radius: 10rpx;
 		background-color: #38DAA6;
+	}
+	
+	.live-status {
+		margin-top: 0;
+		padding-top: 0;
 	}
 	
 

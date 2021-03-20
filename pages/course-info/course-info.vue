@@ -4,7 +4,6 @@
 	<view>
 		<!-- 图片 -->
 		<!-- <view class="course-top-wrap"> -->
-			<!-- <image class="course-info-img" src="../../static/demo/photo1.png" mode=""></image> -->
 			<video style="width: 100%;" src="http://qiniu.shandongwuyu.com/android_10083_20201111_114029_9075978.mp4" controls>
 				您的设备不支持该视频播放
 			</video>
@@ -111,15 +110,8 @@
 			live_status: "正在直播",
 			teacher_name: "王老师",
 			price: "868.00"
-		},
-		{
-			course_id: 3,
-			live_img: "",
-			title: "高二上学期语文知识内容讲解, 重点知识串讲, 考前冲刺练习",
-			live_status: "2020-11-30",
-			teacher_name: "张二狗老师",
-			price: "免费"
 		}
+
 	];
 
 	export default {
@@ -138,7 +130,6 @@
 		},
 		methods: {
 			open(){
-				console.log(222);
 				this.$refs.popup.open();
 			},
 			close(){

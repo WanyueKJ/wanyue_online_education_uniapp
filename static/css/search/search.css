@@ -3,21 +3,11 @@
 }
 
 .search-all-wrap {
-	/* #ifdef MP-WEIXIN */
-	margin-top: 150rpx;
-	/* #endif */
-	/* #ifdef APP-PLUS */
-	margin-top: 80rpx;
-	/* #endif */
-	
-	/* #ifdef H5 */
 	margin-top: 10rpx;
-	/* #endif */
 	width: 100%;
 	height: 65rpx;
 	line-height: 65rpx;
 }
-
 .search-wrap {
 	width: 80%;
 	height: 100%;
@@ -76,18 +66,49 @@
 	font-size: 28rpx;
 }
 
+.teachername {
+	color: #000000;
+	margin-left: 20rpx;
+	height: 100rpx;
+	line-height: 100rpx;
+}
+
 /* 老师搜索结果 */
 .search-teacher-info {
-	width: 95%;
-	padding-left: 7%;
+	width: 100%;
 	margin: 0 auto 50rpx;
+}
+
+.search_home {
+	float: left;
+	margin-left: 5rpx;
+	margin-top: 16rpx;
+	width: 35rpx;
+	height: 35rpx;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+}
+
+.line {
+	background-color: #F5F5F5;
+	height: 2rpx;
+	width: 98%;
+	left: calc(1%);
+	margin-top: 10rpx;
 }
 
 .s-more-view {
 	float: right;
 	margin-top: 10rpx;
-	margin-right: 40rpx;
-	font-size: small;
+	margin-right: 30rpx;
+	font-size: smaller;
+	color: #969696;
+
 }
 
 /* 教师头像 */
@@ -95,169 +116,99 @@
 	width: 100%;
 	height: 100rpx;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
+	margin-top: 20rpx;
+}
+
+.back_image {
+	width: 30rpx;
+	height: 30rpx;
+	position: absolute;
+	right: 30rpx;
+	margin-top: 20rpx;
 }
 
 .teacher-avatar {
 	width: 90rpx;
 	height: 90rpx;
-	margin-right: 30rpx;
+	margin-left: 30rpx;
 	border-radius: 50%;
 }
 
 .teacher-inner-arow {
-	margin-left: 60%;
+	position: absolute;
+	right: 40rpx;
 }
 
+/* page{
+	background-color: #F5F5F5;
+} */
 /* 直播/内容列表 */
 .search-course-info {
-	width: 95%;
-	padding-left: 7%;
-	margin: 0 auto;
+	margin-left: calc(2%);
+	width: 96%;
+	margin-top: 20rpx;
+	/* margin: 0 auto; */
 }
 
 .live-list {
-	margin-top: 60rpx;
-	padding: 0 8rpx;
-}
-
-.live-list::after {
-	display: block;
-	clear: both;
-	height: 0;
-	content: "";
-	visibility: hidden;
-	overflow: hidden;
-}
-
-.live-list-img-wrap {
-	position: relative;
-	width: 31%;
-	height: 180rpx;
-	float: left;
-	margin-right: 6rpx;
-}
-
-/* 课程图片 */
-.live-list-img {
-	width: 100%;
-	height: 100%;
-	border-radius: 8rpx;
-}
-
-.course-title-icon {
-	position: absolute;
-	left: 0rpx;
-	top: 2rpx;
-	width: 80rpx;
-	height: 40rpx;
-	line-height: 40rpx;
-	text-align: center;
-	border-radius: 16rpx 0 16rpx 0;
-	background-color: rgba(0, 0, 0, 0.6);
-	font-size: 10rpx;
-	color: #DBDBDB;
-}
-
-/* 课程内容 */
-.live-list-info {
-	float: left;
-	width: 65%;
-	height: 180rpx;
-	margin-left: 15rpx;
-}
-
-.live-teacher-avatar {
-	width: 35rpx;
-	height: 35rpx;
-	border-radius: 50%;
-}
-
-.live-teacher-avatar {
-	width: 35rpx;
-	height: 35rpx;
-	border-radius: 50%;
+	margin-top: -20rpx;
 }
 
 /* 直播/内容列表标题 */
-.live-c-title {
-	font-weight: bold;
-	width: 95%;
-	line-height: 30rpx;
-}
 
-.live-status {
-	font-size: small !important;
-	color: #969696;
-}
 
-.tuwen-title-wrap {
-	display: inline-block;
-	width: 60rpx;
-	height: 30rpx;
-	line-height: 30rpx;
-	text-align: center;
-	font-size: small;
-	border: 2rpx solid #969696;
-	color: #969696;
-}
 
-.living-status {
-	color: #64D3AD;
-	font-size: small;
-}
-
-.live-status {
-	margin-top: 16rpx;
-	font-size: small;
-}
-
+/* 价格 */
 .live-teacher-price {
-	margin-top: 20rpx;
-	height: 50rpx;
 	display: flex;
-	align-items: center;
+
 }
 
-.teacher-name {
-	/* font-size: 12rpx; */
-	font-size: small;
-}
 
-.price-wrap {
-	display: inline-block;
+
+.free {
 	color: #64D3AD;
 }
+
+.numPrice {
+	color: #FF1B20;
+
+}
+
+.pass {
+	color: #4385FF;
+}
+
+
+
 
 .numPrice text {
 	color: #FF1B20;
 }
 
-.price-wrap {
-	display: inline-block;
-	margin-left: 50%;
-}
 
-.xiangziwrapold {
-	display: none;
-}
 
 .xiangziwrap {
-	display: block;
-	width: 24%;
-	height: 130rpx;
-	margin: calc(50%) auto;
+	margin-top: calc(50%);
+	position: relative;
+	left: calc(50% - 80px);
+	/* top: calc(50%); */
+	width: 300rpx;
+	height: 100rpx;
 }
 
 .xiangzi {
-	width: 100%;
-	height: 100%;
+	margin-left: 100rpx;
+	width: 100rpx;
+	height: 100rpx;
 }
 
 .xiangzi_txt {
 	width: 100%;
 	display: block;
 	text-align: center;
-	font-size: 26rpx;
+	font-size: 18rpx;
 	color: #C7C7C7;
 }

@@ -20,7 +20,7 @@
 
 			<!-- 关注老师 -->
 			<view class="guan-wrap">
-				<view class="guan-info-wrap">
+				<view @click="attenteacher" class="guan-info-wrap">
 					<view class="guanzhu">
 						关注讲师
 					</view>
@@ -39,6 +39,12 @@
 				<view class="my-item" @click="mycourse">
 					<image class="userinfo-icon-img" src="../../static/my/buy.png" mode="aspectFill"></image>
 					<view class="userinfo-title-txt">已购买</view>
+					<uni-icons :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
+				</view>
+				<view class="itemline"></view>
+				<view class="my-item" @click="myscore">
+					<image class="userinfo-icon-img" src="../../static/my/jifen.png" mode="aspectFill"></image>
+					<view class="userinfo-title-txt">我的积分</view>
 					<uni-icons :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
 				</view>
 				<view class="itemline"></view>
@@ -93,7 +99,6 @@
 					'token': gData.userinfo.token
 				},
 				success: res => {
-					console.log(res);
 					if (parseInt(res.data.data.code) !== 0) {
 						return;
 					}
@@ -136,10 +141,20 @@
 				},
 
 			});
-
-
 		},
 		methods: {
+			attenteacher() {
+				uni.navigateTo({
+					url: '../attenteacher/attenteacher',
+				});
+			},
+			// 我的积分
+			myscore() {
+				let score = (this.integral != undefined) ? this.integral : 0;
+				uni.navigateTo({
+					url: '../jifen/jifen?money=' + score,
+				});
+			},
 			showTeacherInfo(touid) {
 				//跳转教师详情页并传入基本信息
 				uni.navigateTo({
@@ -149,27 +164,21 @@
 			},
 			teacherInfo() {
 				uni.navigateTo({
-					url: "/pages/teacher/teacher"
+					url: "../teacher/teacher"
 				})
 			},
 			// 编辑资料
 			editmeans(uid) {
-
 				uni.navigateTo({
 					url: '../edit_user/edit_user?id=' + uid + '&avatar=' + this.userInfo.avatar +
 						'&user_nickname=' + this.userInfo.user_nickname,
 				});
-
 			},
 			mycourse() {
 				uni.navigateTo({
-					url: '../myclass/myclass',
-
+					url: '../hasbuy/hasbuy',
 				});
-				// uni.navigateTo({
-				// 	url: '../detail/detail',
-
-				// });
+				
 			},
 			// 设置内页
 			shezhiList() {
@@ -213,6 +222,11 @@
 </script>
 
 <style>
+	
+	page {
+		overflow: hidden;
+	}
+	
 	.itemline{
 		margin-left: 55rpx;
 		margin-right: 5rpx;
@@ -228,6 +242,7 @@
 	.my-item {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 		height: 80rpx;
 		margin-top: 20rpx;
 	}
@@ -235,19 +250,16 @@
 	.userinfo-title-txt {
 		margin-left: 20rpx;
 		color: #000000;
-		margin-top: 10rpx;
 	}
 
 	.uni-icon-wrapper {
 		position: absolute;
 		right: 20rpx;
-		margin-top: 10rpx;
 	}
 
 	.userinfo-icon-img {
 		width: 40rpx;
 		height: 40rpx;
-		margin-top: 20rpx;
 	}
 
 	.title-wrap {

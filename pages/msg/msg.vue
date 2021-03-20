@@ -1,5 +1,11 @@
 <template>
 	<view>
+		
+		<!-- #ifndef H5 -->
+		<uni-nav-bar :border="false" title="消息" onlive>
+		</uni-nav-bar>
+		<!-- #endif -->	
+		
 		<template>
 			<view class="msg-lt-wrap">
 				<text class="msg-lt-title">消息</text>
@@ -36,12 +42,14 @@
 	
 	import noThing from '@/components/common/no-thing.vue';
 	import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue';
+	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
 	const app = getApp();
 	
 	export default {
 		components:{
 			noThing,
-			uniPopup
+			uniPopup,
+			uniNavBar
 		},
 		data() {
 			return {
@@ -63,6 +71,12 @@
 			this.refresh()
 		},
 		methods: {
+			
+			back(){
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			//下拉刷新
 			refresh(){
 				setTimeout(()=>{
@@ -78,10 +92,8 @@
 					uni.navigateTo({
 						url: '../search/search?type=user',
 					});
-					console.log('添加好友');
 						break;
 					case 'clear':
-					console.log('清除列表');
 						break;
 				}
 				// 关闭弹出层 
@@ -93,8 +105,11 @@
 
 <style>
 	
+	page {
+		overflow: hidden;
+	}
+	
 	.msg-lt-wrap {
-		margin-top: 110rpx;
 		margin-bottom: 40rpx;
 		padding-left: 30rpx;
 	}
