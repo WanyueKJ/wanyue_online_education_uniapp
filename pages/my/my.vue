@@ -43,7 +43,7 @@
 				</view>
 				<view class="itemline"></view>
 				<view class="my-item" @click="myscore">
-					<image class="userinfo-icon-img" src="../../static/my/jifen.png" mode="aspectFill"></image>
+					<image class="userinfo-icon-img" src="" mode="aspectFill"></image>
 					<view class="userinfo-title-txt">我的积分</view>
 					<uni-icons :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
 				</view>
