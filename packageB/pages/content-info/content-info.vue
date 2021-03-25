@@ -291,11 +291,7 @@
 					// // #endif
 				}
 			});
-			// let uid = app.globalData.userinfo.id;
-			// let token = app.globalData.userinfo.token;
-			// this.webview = getApp().globalData.site_h5url + 'appapi/course/info?uid=' + uid + '&token=' + token + '&courseid=' +
-			// 	this.getcourseid;
-			// console.log(this.webview);
+
 			this.getnums();
 			this.getContentInfo(this.courseid);
 			this.getPingjia(this.courseid);
