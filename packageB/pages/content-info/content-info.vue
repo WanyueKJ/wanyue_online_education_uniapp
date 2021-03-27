@@ -286,9 +286,6 @@
 				success: function(res) {
 					that.scrollH = res.windowHeight * 750 / res.windowWidth - 600;
 
-					// // #ifdef MP-WEIXIN
-					// that.scrollH = res.windowHeight * 750 / res.windowWidth - 750;
-					// // #endif
 				}
 			});
 
