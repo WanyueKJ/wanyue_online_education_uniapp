@@ -65,19 +65,18 @@
 					},
 
 					success: res => {
+						console.log(res);
 						if (res.data.data.code == 700) {
 							uni.navigateTo({
 								url: '../login/login',
 								success: res => {},
 								fail: () => {},
-								complete: () => {}
-							});
+								complete: () => {}});
 							return;
 						}
 
 						let info = res.data.data.info;
-						console.log(info);
-						// this.live_course_bg = info.thumb ? info.thumb : '';
+
 						this.newsInfo = info;
 
 					},
