@@ -3,14 +3,10 @@
 <template>
 	<view>
 		<!-- 图片 -->
-		<!-- <view class="course-top-wrap"> -->
-			<video style="width: 100%;" src="http://qiniu.shandongwuyu.com/android_10083_20201111_114029_9075978.mp4" controls>
-				您的设备不支持该视频播放
-			</video>
-			
-			
-			
-		<!-- </view> -->
+		<video style="width: 100%;" src="http://qiniu.shandongwuyu.com/android_10083_20201111_114029_9075978.mp4" controls>
+			您的设备不支持该视频播放
+		</video>
+
 
 		<!-- 标题介绍价格 包含课程 -->
 		<view class="course-md-wrap">

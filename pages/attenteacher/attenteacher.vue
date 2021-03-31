@@ -93,7 +93,6 @@
 							}
 							if (res.data.data.code == 0) {
 								this.course_info = res.data.data.info;
-								// console.log(JSON.parse(JSON.stringify(this.course_info)));
 								this.kongkong = false;
 								if (this.course_info.length == 0) {
 									this.kongkong = true;
