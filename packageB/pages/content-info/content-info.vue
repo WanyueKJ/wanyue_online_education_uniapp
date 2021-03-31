@@ -336,27 +336,6 @@
 				}
 				return true;
 
-				// if(app.globalData.userinfo == '') {
-				// 	uni.showModal({
-				// 		title: '请先登录你的账号',
-				// 		content: '',
-				// 		showCancel: true,
-				// 		cancelText: '取消',
-				// 		confirmText: '立即登录',
-				// 		confirmColor: '#38DAA6',
-				// 		success: res => {
-				// 			if (res.confirm) {
-				// 				uni.navigateTo({
-				// 					url: '../../../pages/login/login'
-				// 				})
-				// 			}
-				// 		},
-				// 		fail: () => {},
-				// 		complete: () => {}
-				// 	});
-				// 	return false;
-				// }
-				// return true;
 			},
 			share() {
 
@@ -529,13 +508,11 @@
 						}
 						///// 类别，0内容1课程2直播3摄像头直播
 						//type /// 形式，1图文2视频3音频    4ppt直播 5视频直播6音频直播7授课直播（白板）
-						console.log(JSON.parse(JSON.stringify(res)));
 						this.trialtype = res.data.data.info[0].trialtype;
 						this.btn_status = res.data.data.info[0].btn_status;
 						this.isbuy = res.data.data.info[0].isbuy;
 						this.sort = res.data.data.info[0].sort;
 						this.type = parseInt(res.data.data.info[0].type);
-						// if (this.sort == 0) {
 						if (this.type == 1) {
 							this.sorttype = '图文自学';
 						} else if (this.type == 2) {
@@ -543,7 +520,6 @@
 						} else if (this.type == 3) {
 							this.sorttype = '语音自学';
 						}
-						// }
 						this.INFO = res.data.data.info;
 						let info = res.data.data.info[0];
 						this.live_course_bg = info.thumb ? info.thumb : '';
@@ -582,14 +558,13 @@
 					});
 					return;
 				}
-				
-			
+
 				uni.request({
-					url: getApp().globalData.site_url + 'App.Course.SetLesson',
+					url: app.globalData.site_url + 'App.Course.SetLesson',
 					method: 'POST',
 					data: {
-						'uid': getApp().globalData.userinfo.id,
-						'token': getApp().globalData.userinfo.token,
+						'uid': app.globalData.userinfo.id,
+						'token': app.globalData.userinfo.token,
 						'courseid': this.getcourseid,
 						'lessonid': 0
 					},
@@ -739,11 +714,6 @@
 	@import url("/static/css/course_info/course_info.css");
 	@import url("/static/common/css/pingjia.css");
 
-	/* page {
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-	} */
 
 	.sub_jifen {
 		position: absolute;
