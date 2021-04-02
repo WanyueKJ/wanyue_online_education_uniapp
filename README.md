@@ -6,7 +6,7 @@
 ---
 
 ### 系统演示  
-![展示图](https://images.gitee.com/uploads/images/2021/0317/105509_706021ce_8543696.png "eq.png")
+![演示图](https://images.gitee.com/uploads/images/2021/0401/155114_9bce1969_8162876.png "app系统演示.png")
 ### Web版地址
 - 首页地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a>
 - 学生端地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a> 账号:13800000000 密码:123456

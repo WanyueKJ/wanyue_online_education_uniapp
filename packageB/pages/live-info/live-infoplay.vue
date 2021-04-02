@@ -3,15 +3,15 @@
 		<!-- #ifndef H5 -->
 		<uni-nav-bar @clickLeft="backCourseList" left-icon="back" :border="false" title="直播详情" onlive>
 		</uni-nav-bar>
-		<!-- #endif -->	
-		
+		<!-- #endif -->
+
 		<view class="live-all-wrap">
 			<template v-if="showsmallvideo == true">
 				<view class="small-video">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="video-small-wrap">
 						<live-player class="video-small-wrap" autoplay="true" id="player" src="wechatliveurl_small" mode="RTC"
-						 bindstatechange="playerStateChange" object-fit="contain" />
+									 bindstatechange="playerStateChange" object-fit="contain" />
 					</view>
 					<!-- #endif -->
 					<!-- #ifdef H5 -->
@@ -53,13 +53,13 @@
 						<template v-if="video_zhezhao == true">
 							<view class="video-wrap">
 								<live-player class="video-wrap-wechat" autoplay="true" id="player" src="wechatliveurl" mode="RTC"
-								 bindstatechange="playerStateChange" object-fit="contain" />
+											 bindstatechange="playerStateChange" object-fit="contain" />
 							</view>
 						</template>
-					<template v-else>
-						<view class="video-wrap">
-						</view>
-					</template>
+						<template v-else>
+							<view class="video-wrap">
+							</view>
+						</template>
 						<!-- #endif -->
 					</template>
 					<view class="nothing" v-if="zhibo_leave == true">
@@ -72,7 +72,26 @@
 			</template>
 			<template v-else-if="livetype == 2">
 				<view class="video-wrap">
-					<video show-mute-btn="true" class="video-wrap" :src="pull" :poster="thumb" controls="true" autoplay="true"></video>
+					<video show-mute-btn="true" id="myVideo" class="video-wrap" :src="pull" :poster="thumb" controls="true" autoplay="true" :danmu-list="danmuList"
+						   enable-danmu playbackRate @loadedmetadata="loadvideo">
+
+						<!-- 倍速播放 h5支持较差 -->
+						<cover-view class="video-control">
+							<cover-view class="multi rate" @tap="showSwitchRate">x {{ currentRate }}</cover-view>
+						</cover-view>
+						<cover-view class="multi-list rate" :class="{ active: rateShow }">
+							<cover-view
+									v-for="(item, index) in ['0.5', '0.8', '1.0', '1.25', '1.5']"
+									:key="index"
+									class="multi-item rate"
+									:data-rate="item"
+									@tap="switchRate"
+									:class="{ active: item == currentRate }">
+								{{ item }}
+							</cover-view>
+						</cover-view>
+
+					</video>
 				</view>
 			</template>
 			<template v-else-if="livetype == 3 || livetype == 6">
@@ -117,7 +136,7 @@
 			<swiper class="swiper-box" :current="tabIndex" @change="onChangeTab" :style="{height : scrollH + 'px'}" style="width: 100%;background-color: #F4F5F6;">
 				<swiper-item>
 					<scroll-view id = "scrollView" :scroll-top="scrollTop" :style="{height : scrollH - 65 + 'px'}" class="scroll1" scroll-y="true"
-					 :scroll-into-view="scrollInto" scroll-with-animation style="position: absolute;left:0; top: 0; 
+								 :scroll-into-view="scrollInto" scroll-with-animation style="position: absolute;left:0; top: 0;
 			        right: 0; bottom: 0;">
 						<view class="zhinanview">
 							<text class="zhinantext">听课指南</text>
@@ -140,7 +159,7 @@
 											<view class="voice_time">{{item.length + 's'}}</view>
 										</view>
 									</view>
-								<view class="chat_space"></view>
+									<view class="chat_space"></view>
 								</view>
 							</view>
 						</block>
@@ -148,7 +167,7 @@
 				</swiper-item>
 				<swiper-item>
 					<scroll-view id = "scrollView" :scroll-top="scrollTop" :style="{height : scrollH - 65 + 'px'}" class="scroll1" scroll-y="true" :scroll-into-view="scrollInto"
-					 scroll-with-animation style="position: absolute;left:0; top:0; 
+								 scroll-with-animation style="position: absolute;left:0; top:0;
 			        right: 0; bottom: 0; ">
 						<block v-for="(item,index) in list" :key="index">
 							<template v-if="item.uid === myID">
@@ -165,9 +184,9 @@
 												<view class="voice_time">{{item.length + 's'}}</view>
 											</view>
 										</view>
-									<view class="chat_space"></view>
+										<view class="chat_space"></view>
 									</view>
-								
+
 								</view>
 							</template>
 							<template v-else>
@@ -192,9 +211,9 @@
 											<text v-if="item.status == '1'" class="wen_text2">问</text>
 											<text v-if="item.status == '2'" class="wen_text2">答</text>
 										</view>
-									<view class="chat_space"></view>
+										<view class="chat_space"></view>
 									</view>
-									
+
 								</view>
 							</template>
 						</block>
@@ -202,7 +221,7 @@
 				</swiper-item>
 				<swiper-item>
 					<scroll-view id = "scrollView" :scroll-top="scrollTop" :style="{height : scrollH + 'px'}" class="scroll1" scroll-y="true" :scroll-into-view="scrollInto"
-					 scroll-with-animation style="position: absolute;left:0; top: 0; 
+								 scroll-with-animation style="position: absolute;left:0; top: 0;
 				    right: 0; bottom: 0; ">
 						<block v-for="(item,index) in list" :key="index">
 							<template v-if="item.uid === myID">
@@ -220,9 +239,9 @@
 												<image :ref="('voice_' + index)" :src="voice_list[index]" class="voice_my"></image>
 												<view class="voice_time">{{item.length + 's'}}</view>
 											</view>
-										
+
 										</view>
-									<view class="chat_space"></view>
+										<view class="chat_space"></view>
 									</view>
 								</view>
 							</template>
@@ -248,7 +267,7 @@
 											<text v-if="item.status == '1'" class="wen_text2">问</text>
 											<text v-if="item.status == '2'" class="wen_text2">答</text>
 										</view>
-									    <view class="chat_space"></view>
+										<view class="chat_space"></view>
 									</view>
 								</view>
 							</template>
@@ -264,10 +283,10 @@
 						<image class="sendvoice" @click="sendvoice" :src="chat_voice"></image>
 						<!-- #endif -->
 						<view @touchstart.stop.prevent="startVoice" @touchmove.stop.prevent="moveVoice" @touchend.stop="endVoice"
-						 @touchcancel.stop="cancelVoice" class="inputborder" v-if="isvoice == true" style="color: #969696;text-align: center; line-height: 80rpx;">{{voiceTitle}}</view>
+							  @touchcancel.stop="cancelVoice" class="inputborder" v-if="isvoice == true" style="color: #969696;text-align: center; line-height: 80rpx;">{{voiceTitle}}</view>
 						<view class="inputborder" v-if="isvoice == false">
 							<input :disabled="isshut == false ? false:true" :adjust-position="false" ref="input1" hold-keyboard='true'
-							 confirm-type="send" @keyup.enter='send' @confirm="send" v-model="content" class="input" :placeholder="shut_place" />
+								   confirm-type="send" @keyup.enter='send' @confirm="send" v-model="content" class="input" :placeholder="shut_place" />
 							<view class="wen-btn-wrap">
 								<view @click="question" class="duihao-wrap">
 									<image v-if="isQue == true" class="duihao-img" src="../../static/images/duihao.png" mode="aspectFill"></image>
@@ -290,7 +309,7 @@
 			<view v-show="show_big_ppt == true" :style="'top:' + system_ppt_top +'px;'" class="big_pptnum">{{show_big_ppt_index +'/'+ppts.length}}</view>
 			<view v-show="show_big_ppt == true" @click="big_ppt_back" class="ppt_big_back_big"></view>
 			<image v-show="show_big_ppt == true" @click="big_ppt_back" :style="'top:' + system_ppt_top +'px;'" mode="aspectFit"
-			 class="ppt_big_back" src="../../static/navi_backImg_white@3x.png"></image>
+				   class="ppt_big_back" src="../../static/navi_backImg_white@3x.png"></image>
 			<view class="voice_an" v-if="recording == true">
 				<image v-if="voiceimagestatus == false" class="voice_an_image" src="../../static/RecordCancel@2x.png" mode="aspectFit"></image>
 				<!-- <image  :animation="num==0?showpic:hidepic" v-if="voiceimagestatus == true" class="voice_an_image2" src="../../static/RecordingSignal001@2x.png" mode="aspectFit"></image>
@@ -427,16 +446,20 @@
 				showsmallvideo: false,
 				showShareScreen: false,
 				showBigScreen: true,
-				livemode: 0
+				livemode: 0,
+				rateShow: false, // 倍速浮层
+				currentRate: 1.0, // 默认倍速
+				danmuList: [], //跑马灯弹幕列表
+				videoDuration: 0, //视频时长
 			}
 		},
 		onShow() {
-		uni.getStorage({
-			key: 'userinfo',
-			success: function(res) {
-				getApp().globalData.userinfo = res.data;
-			},
-		});		
+			uni.getStorage({
+				key: 'userinfo',
+				success: function(res) {
+					getApp().globalData.userinfo = res.data;
+				},
+			});
 		},
 		onReady() {
 			var that = this;
@@ -448,14 +471,14 @@
 					// #ifdef H5
 					that.scrollH = res.windowHeight  - 275 - parseInt(res.safeArea.top)-1;
 					// #endif
-					
+
 					// #ifdef MP-WEIXIN
 					let weinfo = uni.getMenuButtonBoundingClientRect();
 					console.log(weinfo);
 					console.log(res);
 					that.system_ppt_top = parseInt(res.safeArea.top) + 10;
-					// that.scrollH = res.windowHeight * 750 / res.windowWidth 
-					// - 550 - 64 - 20 * 750 / res.windowWidth 
+					// that.scrollH = res.windowHeight * 750 / res.windowWidth
+					// - 550 - 64 - 20 * 750 / res.windowWidth
 					// - (weinfo.top - 20) *
 					// 	750 / res.windowWidth;
 					that.scrollH = (res.windowHeight - 64 -(weinfo.top - 20)) - 275 - 1;
@@ -464,6 +487,7 @@
 				}
 			});
 			this.GetChat();
+			this.getHorseLamp();
 		},
 		onUnload() {
 			// #ifdef H5
@@ -563,6 +587,40 @@
 			});
 		},
 		methods: {
+			// 显示倍速浮层
+			showSwitchRate(rate) {
+				let that = this;
+				that.rateShow = true;
+			},
+			// 切换倍速
+			switchRate(e) {
+				let that = this;
+				let rate = Number(e.currentTarget.dataset.rate);
+				that.currentRate = rate;
+				that.rateShow = false;
+				this.videoContext.playbackRate(rate);
+			},
+			//视频加载完成事件 仅小程序h5支持
+			loadvideo(e){
+				this.videoDuration = e.detail.duration; //视频时长
+				this.getHorseLamp();
+			},
+			// 获取跑马灯(用户手机号/微信登录用户名)
+			getHorseLamp(){
+				let user_login = app.globalData.userinfo.user_login;
+				let that = this;
+				let videoDuration = parseInt(that.videoDuration);
+				//原生端初始化时无法获取视频时长, 只能写死
+				for (let i = 2; i < videoDuration; i+=18) {
+					let danmu = {
+						text: user_login,
+						color: '#ED1C24',
+						time: i
+					};
+					that.danmuList.push(danmu);
+				}
+
+			},
 			getqiniutoken() {
 				uni.request({
 					url: getApp().globalData.site_url + 'Upload.GetQiniuToken',
@@ -692,9 +750,9 @@
 			},
 			//处理录音文件
 			handleRecorder({
-				tempFilePath,
-				duration
-			}) {
+							   tempFilePath,
+							   duration
+						   }) {
 				if (this.canSend == false) {
 					return;
 				}
@@ -1001,7 +1059,7 @@
 										for (let i = 0; i < emojiArray.length; i++) {
 											var path = getApp().globalData.biaoqingurl + pinyinArray[i];
 											content = content.replace(emojiArray[i],
-												'<img style="width: 25px; height: 25px; vertical-align: middle;" src ="' + path + '"/>'
+													'<img style="width: 25px; height: 25px; vertical-align: middle;" src ="' + path + '"/>'
 											);
 										}
 									}
@@ -1082,7 +1140,7 @@
 									for (let i = 0; i < emojiArray.length; i++) {
 										var path = getApp().globalData.biaoqingurl + pinyinArray[i];
 										content = content.replace(emojiArray[i],
-											'<img style="width: 25px; height: 25px; vertical-align: middle;" src ="' + path + '"/>'
+												'<img style="width: 25px; height: 25px; vertical-align: middle;" src ="' + path + '"/>'
 										);
 									}
 								}
@@ -1129,20 +1187,20 @@
 				wechatAgora = new AogoraWechat.Client();
 				wechatAgora.setRole('audience');
 				wechatAgora.init(this.decypt(agoraappid), () => {
-						console.log('小程序初始化成功');
-						//加入通道
-						wechatAgora.join('', agorastream, uid, () => {
-							console.log('加入通道成功');
+							console.log('小程序初始化成功');
+							//加入通道
+							wechatAgora.join('', agorastream, uid, () => {
+								console.log('加入通道成功');
+								this.zhibo_leave = true;
+							}, e => {
+								console.log('加入通道失败');
+								this.zhibo_leave = true;
+							});
+						},
+						e => {
 							this.zhibo_leave = true;
-						}, e => {
-							console.log('加入通道失败');
-							this.zhibo_leave = true;
+							console.log('小程序初始化失败');
 						});
-					},
-					e => {
-						this.zhibo_leave = true;
-						console.log('小程序初始化失败');
-					});
 				//订阅远端流
 				wechatAgora.on("stream-added", e => {
 					wechatAgora.subscribe(e.uid, (res) => {
@@ -1287,7 +1345,7 @@
 							this.Usercount = parseInt(res.data.data.info[0].nums);
 							this.agoraappid = res.data.data.info[0].sound_appid;
 							this.agoramRoomName = res.data.data.info[0].stream;
-							if (this.livetype == 3 || this.livetype == 6) {
+							if (this.livetype == 2 || this.livetype == 3 || this.livetype == 6) {
 								this.videoContext = uni.createVideoContext('myVideo');
 								this.buttonimage = '../../static/voice2.png';
 							}
@@ -1337,7 +1395,7 @@
 									setTimeout(() => {
 										this.$nextTick(() => {
 											this.$refs.videoAdnroid.clearTel(
-												this.agoraappid + '声' + this.agoramRoomName + '网' + gData.userinfo.id
+													this.agoraappid + '声' + this.agoramRoomName + '网' + gData.userinfo.id
 											);
 										});
 									}, 0);
@@ -1533,16 +1591,17 @@
 				}
 				var that = this;
 				setTimeout(() => {
-				    that.scrollTop = 999;
+					that.scrollTop = 999;
 					that.scrollInto = 'chat' + lastIndex;
 				}, 500);
 			},
-			
+
 		}
 	}
 </script>
 <style>
 	@import url("/static/css/infoplay.css");
+	@import url("../../../common/beisu.css");
 
 	/deep/.uni-scroll-view ::-webkit-scrollbar {
 		/* 隐藏滚动条，但依旧具备可以滚动的功能 */

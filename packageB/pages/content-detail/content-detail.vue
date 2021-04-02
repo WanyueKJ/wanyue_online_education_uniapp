@@ -1,26 +1,41 @@
 <template>
 	<view class="page">
-		
+
 		<!-- #ifndef H5 -->
 		<uni-nav-bar @clickLeft="backCourseList" left-icon="back" :border="false" title="内容详情" statusBar>
-		
+
 		</uni-nav-bar>
 		<!-- #endif -->
-		
+
 		<template v-if="type == 2">
 			<view class="video-wrap">
-				<video id="myVideo" class="video-wrap" :src="url" :poster="thumb" controls="true" autoplay="true" muted="false"></video>
+				<video id="myVideo" class="video-wrap" :src="url" :poster="thumb" controls="true" autoplay="true" muted="false"
+					   :danmu-list="danmuList" enable-danmu @fullscreenchange="fullchange"
+					   playbackRate @loadedmetadata="loadvideo">
+					<!-- 倍速播放 h5支持较差 -->
+					<cover-view class="video-control">
+						<cover-view class="multi rate" @tap="showSwitchRate">x {{ currentRate }}</cover-view>
+					</cover-view>
+					<cover-view class="multi-list rate" :class="{ active: rateShow }">
+						<cover-view
+								v-for="(item, index) in ['0.5', '0.8', '1.0', '1.25', '1.5']"
+								:key="index"
+								class="multi-item rate"
+								:data-rate="item"
+								@tap="switchRate"
+								:class="{ active: item == currentRate }">
+							{{ item }}
+						</cover-view>
+					</cover-view>
+
+				</video>
 			</view>
-			
-			
 		</template>
 		<template v-else-if="type == 3">
 			<view class="video-wrap3">
 				<image :src="thumb" class="video-wrap">
 				</image>
-				
 				<imt-audio autoplay class="imtaudio" :src="url"></imt-audio>
-				<!-- <image :src="buttonimage" class="button" @click="pause"></image> -->
 			</view>
 		</template>
 		<template v-else></template>
@@ -28,7 +43,6 @@
 			<view class="content-title">{{name}}</view>
 			<view class="content-des">{{des}}</view>
 			<view class="content-time">{{adddtime}}</view>
-			<view class="line"></view>
 			<view class="content-wrap">
 				<rich-text class="content" :nodes="content"></rich-text>
 			</view>
@@ -40,7 +54,8 @@
 <script>
 	import imtAudio from '@/components/imt-audio/imt-audio.vue';
 	import uniNavBar from '@/components/uni-ui/uni-nav-bar/uni-nav-bar.vue';
-	
+	const app = getApp();
+
 	export default {
 		components: {
 			imtAudio,
@@ -63,16 +78,26 @@
 				status: 1,
 				start: '',
 				end: '',
-				playCurrent: 0
-
+				playCurrent: 0,
+				danmuList: [], //跑马灯弹幕列表
+				videoDuration: 0, //视频时长
+				rateShow: false, // 倍速浮层
+				currentRate: 1.0, // 默认倍速
+				fullScreen: false, //是否全屏
+				switch_btn: {
+					bj_color: '#FFFFFF',
+					checked_bj_color: '#38E1AB'
+				},
 			}
 		},
-		onLoad(option) {
+		onReady() {
 
+		},
+		onLoad(option) {
 			this.type = option.type;
 			this.live_info = JSON.parse(decodeURIComponent(option.info));
 			this.name = this.live_info.name;
-			
+
 			this.content = this.live_info.content;
 			this.des = this.live_info.des;
 			this.thumb = option.thumb;
@@ -80,20 +105,51 @@
 			if (!this.adddtime){
 				this.adddtime = option.addtime;
 			}
-			if (this.type == 1) {
 
-			} else {
+			if (this.type != 1) {
 				this.url = this.decypt(this.live_info.url);
-				// console.log(this.url);
-				if (this.type == 2) {
-					this.videoContext = uni.createVideoContext('myVideo');
-					this.buttonimage = '../../static/voice2.png';
-				}
+				this.videoContext = uni.createVideoContext('myVideo');
+				this.getHorseLamp();
+				this.buttonimage = '../../static/voice2.png';
 			}
 
 		},
 		methods: {
-			
+
+			// 显示倍速浮层
+			showSwitchRate(rate) {
+				let that = this;
+				that.rateShow = true;
+			},
+			// 切换倍速
+			switchRate(e) {
+				let that = this;
+				let rate = Number(e.currentTarget.dataset.rate);
+				that.currentRate = rate;
+				that.rateShow = false;
+				this.videoContext.playbackRate(rate);
+			},
+			//视频加载完成事件 仅小程序h5支持
+			loadvideo(e){
+				this.videoDuration = e.detail.duration; //视频时长
+				this.getHorseLamp();
+			},
+			// 获取跑马灯(用户手机号/微信登录用户名)
+			getHorseLamp(){
+				let user_login = app.globalData.userinfo.user_login;
+				let that = this;
+				let videoDuration = parseInt(that.videoDuration);
+				//原生端初始化时无法获取视频时长, 只能写死
+				for (let i = 2; i < videoDuration; i+=18) {
+					let danmu = {
+						text: user_login,
+						color: '#ED1C24',
+						time: i
+					};
+					that.danmuList.push(danmu);
+				}
+
+			},
 			decypt(code) {
 				var newcode = '';
 				var str = '1ecxXyLRB.COdrAi:q09Z62ash-QGn8VFNIlb=fM/D74WjS_EUzYuw?HmTPvkJ3otK5gp&';
@@ -128,20 +184,6 @@
 					this.buttonimage = '../../static/voice.png';
 				}
 			},
-			timeupdate(event) {
-				if (event.detail.detail) {
-					this.currentTime = event.detail.detail.currentTime;
-					this.duration = event.detail.detail.duration;
-					this.start = this.calcTimer(this.currentTime);
-					this.end = this.calcTimer(this.duration);
-				} else {
-					this.currentTime = event.detail.currentTime;
-					this.duration = event.detail.duration;
-					this.start = this.calcTimer(event.detail.currentTime);
-					this.end = this.calcTimer(event.detail.duration);
-				}
-			},
-
 			// 拖动进度条
 			sliderChange(data) {
 				this.videoContext.seek(data.detail.value);
@@ -151,12 +193,6 @@
 			sliderChanging(data) {
 				this.currentTime = data.detail.value;
 				this.start = this.calcTimer(data.detail.value);
-			},
-
-			loadedmetadata(data) {
-				this.duration = data.detail.duration;
-				this.start = this.calcTimer(data.detail.duration);
-				console.log('音频加载完成');
 			},
 			calcTimer(timer) {
 				if (timer === 0 || typeof timer !== 'number') {
@@ -177,6 +213,9 @@
 </script>
 
 <style>
+
+	@import url("../../../common/beisu.css");
+
 	.page {
 		width: 100%;
 	}
@@ -228,6 +267,13 @@
 		width: 100%;
 		height: 400rpx;
 		background-color: #000000;
+		position: relative;
+	}
+
+	.controls-title {
+		color: #F7F7F7;
+		position: absolute;
+		bottom: 40rpx;
 	}
 
 	.video-wrap3 {
@@ -255,7 +301,6 @@
 		left: 20rpx;
 		right: 20rpx;
 		margin-top: -20rpx;
-		
 	}
 	.content-title {
 		height: 40rpx;
@@ -275,12 +320,18 @@
 		margin-top: 10rpx;
 		margin-bottom: 40rpx;
 	}
-	
+
 	.content-wrap {
 		margin: 0 auto;
 		overflow: hidden;
 		width: 92%;
 	}
-	
-	
+
+
+	.switch-wrap {
+		position: absolute;
+		top: 90rpx;
+	}
+
+
 </style>
