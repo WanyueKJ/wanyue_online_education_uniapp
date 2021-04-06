@@ -86,34 +86,19 @@
 		data() {
 			return {
 				userInfo: {},
-				isTeacherInfo: ''
+				isTeacherInfo: '',
+				integral: 0,
 			}
 		},
 		onShow: function() {
-			let gData = app.globalData;
-			uni.request({
-				url: gData.site_url + 'User.GetBaseInfo',
-				method: 'GET',
-				data: {
-					'uid': gData.userinfo.id,
-					'token': gData.userinfo.token
-				},
-				success: res => {
-					if (parseInt(res.data.data.code) !== 0) {
-						return;
-					}
-					this.userInfo = res.data.data.info[0];
-					if (res.data.data.info[0].type == '1') {
-						//讲师
-						this.isTeacherInfo = '1'
-					}
-				},
-
+			uni.getStorage({
+				key: 'userinfo',
+				success: function(res) {
+					app.globalData.userinfo = res.data;
+					this.userInfo = app.globalData.userinfo;
+				}
 			});
-		},
-		onLoad() {
-
-			if (app.globalData.userinfo == '') {
+			if(app.globalData.userinfo.token == undefined || app.globalData.userinfo == '') {
 				uni.navigateTo({
 					url: '../login/login'
 				})
@@ -129,11 +114,11 @@
 					'token': gData.userinfo.token
 				},
 				success: res => {
-
 					if (parseInt(res.data.data.code) !== 0) {
 						return;
 					}
 					this.userInfo = res.data.data.info[0];
+					this.integral = res.data.data.info[0].integral;
 					if (res.data.data.info[0].type == '1') {
 						//讲师
 						this.isTeacherInfo = '1'
@@ -141,6 +126,10 @@
 				},
 
 			});
+
+		},
+		onLoad() {
+
 		},
 		methods: {
 			attenteacher() {
