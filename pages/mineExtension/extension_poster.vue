@@ -11,8 +11,7 @@
 		<view class="extension_poster-add" @click="addPoster">{{savetitle}}</view>
 		
 		
-		<!-- <button open-type="share" class="extension_poster-add">{{sharetitle}}</button> -->
-		
+
 	</view>
 </template>
 
@@ -115,12 +114,10 @@
 					url: this.poster_url,
 					success: (res) => {
 						uni.hideLoading();
-						console.log(res);
 						if (res.statusCode === 200) {
 							uni.saveImageToPhotosAlbum({
 								filePath: res.tempFilePath,
 								success: (res) => {
-									console.log(res);
 									uni.showToast({
 										title: '保存成功',
 										icon: 'success'
@@ -131,7 +128,6 @@
 										title: '保存失败,请重试',
 										icon: 'none'
 									});
-									console.log(res);
 								}
 							});
 						} else {
