@@ -150,7 +150,8 @@
   ![展示图](https://images.gitee.com/uploads/images/2021/0317/105712_68d3b78b_8543696.png "live_show.png")
     
   #### 功能对比
-  ![展示图](https://images.gitee.com/uploads/images/2021/0322/160655_563d890d_2242923.png "功能对比3(1).png")  
+  ![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/173014_10c3ce1d_2242923.png "功能对比4(1).png")
+  
    ### 开源版使用须知
     
    * 允许用于个人学习、教学案例
@@ -171,7 +172,7 @@
   <div style='height: 130px'>
       <img class="kefu_weixin" style="float:left;" src="https://images.gitee.com/uploads/images/2021/0317/105917_b29af80c_8543696.png" width="602" height="123"/>
       <div style="float:left;">
-          <p>QQ：2415408120</p>
+          <p>QQ：259603330</p>
           <p>QQ群：995910672</p>
       </div>
   </div>
