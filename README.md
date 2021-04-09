@@ -164,7 +164,7 @@
   * 如果你想使用功能更完善的教育系统，请联系QQ客服: 2415408120获取专业版
   * 如果您想基于教育系统进行定制开发，我们提供有偿定制服务支持！
   * 其他合作模式不限，欢迎来撩！
-  * 官网地址：[http://www.sdwanyue.com](http://www.sdwanyue.com)
+  * 官网地址：[http://git.sdwanyue.com](http://git.sdwanyue.com)
                   
     
   ### 联系我们（加客服经理微信或QQ，免费获取sql脚本）
