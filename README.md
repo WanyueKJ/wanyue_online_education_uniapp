@@ -1,6 +1,7 @@
 <div align=center><img src="https://images.gitee.com/uploads/images/2021/0317/105428_2d83f8f9_8543696.png" width="590" height="212"/></div>
 
 ### 项目说明（如果对你有用，请点亮右上角的Star！）
+
 ##### <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">项目文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">部署文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">常见问题</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">升级日志</a>
 
 ---
@@ -53,7 +54,7 @@
       此两个项目是互通的  
 ```
 ### 功能展示
- ![展示图](https://images.gitee.com/uploads/images/2021/0317/105540_9065b503_8543696.png "function_all2.png")
+ ![展示图](https://images.gitee.com/uploads/images/2021/0410/144209_cf74cc99_8162876.png "function_all2.png")
  
  ### 主要功能介绍
  #### 讲师PC端
@@ -82,15 +83,33 @@
  
  * 精选内容， 
  
-     1.详情页 由上往下依次展示封面图、课程标题，学习人数、主讲老师与辅导老师、课程类型（分为密码、免费、付费三种类型)等
+     1. 详情页：由上往下依次展示封面图、课程标题，学习人数、主讲老师与辅导老师、课程类型（分为密码、免费、付费三种类型)等；
      
-     2.查看详情 上部为视频、音频播放区域，视频、音频支持进度条滑动查看，视频可全屏观看，播放区域下方为内容标题、简介、发布时间等信息和详细内容展示（支持图文）
+     2.查看详情：上部为视频、音频播放区域，视频、音频支持进度条滑动查看，视频可全屏观看，可选择倍速播放，并有跑马灯防盗水印，播放区域下方为内容标题、简介、发布时间等信息和详细内容展示（支持图文）。
  
   * 直播课堂，
      
      1.语音大班课 
-     
      2.视频大班课 
+  * 我的课程：
+     1.我的课程与WEB内的选课中心一致，可根据学段、年纪、科目、类别来搜索对应课程。
+
+  * 消息：
+     1.系统消息：学生接收系统发送到的消息提醒；
+     2.课程动态：学生订阅的课程更新时，会收到课程信息；
+     3.讲师动态：学生所关注的讲师发布新课程或有新的动态时，会收到讲师动态信息。
+
+  * 分享与积分：
+     1.海报分享：展示当前平台所有裂变海报活动列表，可查看名称、课程信息、二维码等，分享成功后可获得积分。
+     2.积分：显示用户的积分余额以及积分明细，积分的来源是购买课程返还的积分和下级用户购买课程奖励的积分，积分用途为购买课程时抵扣。
+
+  * 个人中心：
+     1.最上展示学生的头像、昵称和ID，并且有关注讲师的显示。
+     2.已购买：显示学生学习过或已购买的直播课和内容课。
+     3.我的积分；
+     4.意见反馈；
+     5.关于我们；
+     6.设置：包含联系我们、版本更新和清除缓存。
 
 ### 后台主要功能介绍
 * 设置
@@ -142,15 +161,12 @@
   
   
   ### 页面展示
-  
-  ![展示图](https://images.gitee.com/uploads/images/2021/0317/105620_fbad97f5_8543696.png "big_function_01.png")
-  ![展示图](https://images.gitee.com/uploads/images/2021/0317/105631_04f0e218_8543696.png "big_function_02.png")
-  ![展示图](https://images.gitee.com/uploads/images/2021/0317/105643_56e75482_8543696.png "big_function_03.png")
+  ![页面展示](https://images.gitee.com/uploads/images/2021/0410/144409_e7f6736b_8162876.png "uniapp详情2.png")
   #### 直播课页面
   ![展示图](https://images.gitee.com/uploads/images/2021/0317/105712_68d3b78b_8543696.png "live_show.png")
     
   #### 功能对比
-  ![输入图片说明](https://images.gitee.com/uploads/images/2021/0409/173014_10c3ce1d_2242923.png "功能对比4(1).png")
+   ![输入图片说明](https://images.gitee.com/uploads/images/2021/0410/143936_7235ec5f_8162876.png "功能对比4(1).png") 
   
    ### 开源版使用须知
     
@@ -179,6 +195,7 @@
   <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=JShAyXeoKqg2lWFEUSElxELImhjeMG4y&jump_from=webapi"><img border="0" src="https://images.gitee.com/uploads/images/2021/0317/100424_072ee536_8543696.png" alt="万岳在线教育讨论群" title="万岳在线教育讨论群"></a> 可加
   
   > QQ群：995910672
+
 
 
 
