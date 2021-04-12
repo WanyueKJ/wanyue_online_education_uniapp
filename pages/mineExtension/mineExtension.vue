@@ -228,7 +228,6 @@
 			//微信小程序点击推广
 			extension_wx() {
 				var _this = this;
-				console.log('微信小程序点击推广')
 
 			},
 			extension() {
@@ -239,47 +238,7 @@
 			},
 			//h5点击推广
 			extension_h5() {
-				/*
-				var _this = this;
-				let ua = navigator.userAgent.toLowerCase();
-				if (ua.match(/MicroMessenger/i) == "micromessenger") {
-					console.log('微信浏览器')
-					jweixin.config({
-						debug: true,
-						appId: "13213132",
-						timestamp: "",
-						nonceStr: "",
-						signature: "",
-						jsApiList: [
-							'onMenuShareAppMessage'
-						]
-					});
-					jweixin.ready(function() {
 
-						//配置自定义分享内容
-						jweixin.onMenuShareAppMessage({
-							title: "哈哈哈哈", // 分享标题
-							desc: "122113213", // 分享描述
-							link: window.location.href, // 分享链接，当前页面地址
-							imgUrl: "", // 分享图标的链接
-							type: "link", // 分享类型
-							dataUrl: "", // 默认为空
-							success: res => {
-								console.log(res)
-							}
-						});
-						// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					});
-					jweixin.error(function(res) {
-						console.log('进来了');
-						console.log(err);
-						// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-					});
-
-				} else {
-					_this.isHidden = 0;
-				}
-				*/
 			},
 			EXuser() {
 				uni.navigateTo({
