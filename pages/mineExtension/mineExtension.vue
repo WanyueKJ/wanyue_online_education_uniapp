@@ -232,9 +232,6 @@
 			},
 			extension() {
 				this.isHidden = 0;
-				// uni.navigateTo({
-				// 	url: '../mineExtension/extension_poster?code=' + this.code,
-				// });
 			},
 			//h5点击推广
 			extension_h5() {
