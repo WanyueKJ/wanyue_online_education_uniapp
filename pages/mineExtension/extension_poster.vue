@@ -85,7 +85,6 @@
 						'token': app.globalData.userinfo.token
 					},
 					success: res => {
-						console.log(res);
 						if (res.data.data.code == 700) {
 							uni.navigateTo({
 								url: '../login/login'
@@ -93,7 +92,6 @@
 							return;
 						};
 						this.poster_url = res.data.data.info.poster_url;
-						console.log(this.poster_url);
 					}
 				});
 			}, 0);
