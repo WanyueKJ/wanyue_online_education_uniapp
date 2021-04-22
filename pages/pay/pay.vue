@@ -262,7 +262,6 @@
 				key: 'openid',
 				success: function(res) {
 					getApp().globalData.openid = res.data;
-					console.log(res.data);
 				}
 			});
 
@@ -313,7 +312,7 @@
 				goodsArray.push(newtiem);
 			}
 			var json = JSON.stringify(goodsArray);
-			// console.log(json);
+
 			let gData = getApp().globalData;
 			uni.request({
 				url: gData.site_url + 'Cart.getDeduct',
@@ -370,7 +369,6 @@
 						'token': gData.userinfo.token,
 					},
 					success: res => {
-					    console.log(res);
 						if (res.data.data.code == 0) {
 							this.payinfo = res.data.data.info;
 							this.showpayview = true;

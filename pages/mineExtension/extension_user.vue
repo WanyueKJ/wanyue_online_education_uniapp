@@ -43,9 +43,7 @@
 						return;
 					}
 					this.list = res.data.data.info;
-					
-					// console.log(JSON.parse(JSON.stringify(res.data.data.info)));
-			
+
 				},
 			
 			});
