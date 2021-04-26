@@ -66,7 +66,6 @@
 
 		},
 		onLoad(option) {
-			console.log(option);
 			this.name = option.name;
 			this.thumb = option.thumb;
 			this.price = option.price;
@@ -113,7 +112,6 @@
 								filePath: res.tempFilePath,
 
 								success: (res) => {
-									console.log(res);
 									uni.showToast({
 										title: '保存成功',
 										icon: 'none'
@@ -124,10 +122,8 @@
 										title: '保存失败',
 										icon: 'none'
 									});
-									console.log(res);
 								},
 								complete(res) {
-									console.log(res);
 								}
 							});
 							// #endif
