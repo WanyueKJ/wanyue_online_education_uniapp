@@ -5,7 +5,7 @@
 			userinfo: '',
 			site_url: "https://demo.sdwanyue.com/api/?s=",
 			site_h5url: "https://demo.sdwanyue.com/",
-			qiniuimageurl:"https://edu-qiniu.sdwanyue.com",
+			qiniuimageurl:"",
 			biaoqingurl:"https://demo.sdwanyue.com/UNIAPP/biaoqing/",
 			// #ifdef MP-WEIXIN
 			socket_url: "wss://demo.sdwanyue.com:19967",
