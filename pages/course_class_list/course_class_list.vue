@@ -176,7 +176,6 @@
 				
 			},
 			refresherrefresh() {
-				console.log('自定义下拉刷新被触发');
 				this.refresherTriggered = true;
 				this.getlist();
 				setTimeout(() => {

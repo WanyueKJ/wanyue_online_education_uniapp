@@ -104,7 +104,6 @@
 							console.log('这是H5');
 							// #endif
 
-
 							// #ifdef MP-WEIXIN
 							this.showbaseimage2 = true;
 							this.wechat_image = res.tempFilePath;
