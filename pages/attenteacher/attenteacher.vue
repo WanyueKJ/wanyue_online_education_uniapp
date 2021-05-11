@@ -77,8 +77,8 @@
 						url: getApp().globalData.site_url + 'User.GetFollow',
 						method: 'GET',
 						data: {
-							'uid': getApp().globalData.userinfo.id,
-							'token': getApp().globalData.userinfo.token,
+							'uid': app.globalData.userinfo.id,
+							'token': app.globalData.userinfo.token,
 							'p': 1
 						},
 						success: res => {
