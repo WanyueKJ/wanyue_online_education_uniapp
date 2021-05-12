@@ -194,7 +194,6 @@
 							'p': 0
 						},
 						success: res => {
-							console.log(res);
 							let data = res.data.data;
 							if (data.code == 0 && data.info.length > 0) {
 								this.course_info = res.data.data.info;
