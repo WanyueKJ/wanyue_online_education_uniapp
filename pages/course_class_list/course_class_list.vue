@@ -109,7 +109,7 @@
 		uni.getStorage({
 			key: 'userinfo',
 			success: function(res) {
-				getApp().globalData.userinfo = res.data;
+				app.globalData.userinfo = res.data;
 			},
 		});	
 		},
