@@ -138,8 +138,8 @@
 					url: getApp().globalData.site_url + 'User.Iftoken',
 					method: 'POST',
 					data: {
-						'uid': getApp().globalData.userinfo.id,
-						'token': getApp().globalData.userinfo.token
+						'uid': app.globalData.userinfo.id,
+						'token': app.globalData.userinfo.token
 					},
 					success: res => {
 						if (res.data.data.code == 700) {
@@ -230,7 +230,6 @@
 								url: '../../packageB/pages/taocaninfo/taocaninfo?courseid=' + liveCourseId
 							});
 						}
-						//
 						else if (sorttype == 0) {
 							uni.navigateTo({
 								url: '../../packageB/pages/content-info/content-info?courseid=' + liveCourseId
