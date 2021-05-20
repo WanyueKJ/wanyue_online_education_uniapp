@@ -135,7 +135,7 @@
 					successFun(0);
 				} else {
 				uni.request({
-					url: getApp().globalData.site_url + 'User.Iftoken',
+					url: app.globalData.site_url + 'User.Iftoken',
 					method: 'POST',
 					data: {
 						'uid': app.globalData.userinfo.id,
