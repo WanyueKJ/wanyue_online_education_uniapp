@@ -59,10 +59,7 @@
 						if(parseInt(res.data.data.code) !== 0) {
 							return;
 						}
-						
-						if(res.data.data.info.length < 1) {
-							// 空空如也
-						}
+
 						this.list_info = res.data.data.info;
 						
 					},
