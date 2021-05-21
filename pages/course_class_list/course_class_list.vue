@@ -131,7 +131,7 @@
 		},
 		methods: {
 			checktoken(successFun) {
-				if (getApp().globalData.userinfo.token == undefined) {
+				if (app.globalData.userinfo.token == undefined) {
 					successFun(0);
 				} else {
 				uni.request({

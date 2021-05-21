@@ -50,8 +50,8 @@
 				return;
 			}
 			//id 头像 昵称
-			this.avatarPath = getApp().globalData.userinfo.avatar;
-			this.user_nickname = getApp().globalData.userinfo.user_nickname;
+			this.avatarPath = app.globalData.userinfo.avatar;
+			this.user_nickname = app.globalData.userinfo.user_nickname;
 		},
 		methods: {
 			back() {
@@ -73,11 +73,11 @@
 						let that2 = that;
 						var path = tempFilePaths[0];
 						uni.request({
-							url: getApp().globalData.site_url + 'Upload.GetQiniuToken',
+							url: app.globalData.site_url + 'Upload.GetQiniuToken',
 							method: 'POST',
 							data: {
-								'uid': getApp().globalData.userinfo.id,
-								'token': getApp().globalData.userinfo.token
+								'uid': app.globalData.userinfo.id,
+								'token': app.globalData.userinfo.token
 							},
 							success: res2 => {
 								uni.hideLoading();
@@ -99,7 +99,7 @@
 										
 									}, {
 										region: 'ECN',
-										domain: getApp().globalData.qiniuimageurl,
+										domain: app.globalData.qiniuimageurl,
 										key: name,
 										uptoken: QiNiutoken,
 									});
@@ -163,11 +163,11 @@
 					},
 					success: res => {
 						if (res.data.data.code == 0) {
-							getApp().globalData.userinfo.user_nickname = res.data.data.info[0].user_nickname;
-							getApp().globalData.userinfo.avatar = res.data.data.info[0].avatar;
+							app.globalData.userinfo.user_nickname = res.data.data.info[0].user_nickname;
+							app.globalData.userinfo.avatar = res.data.data.info[0].avatar;
 							uni.setStorage({
 								key: 'userinfo',
-								data: getApp().globalData.userinfo,
+								data: app.globalData.userinfo,
 								success: function(res) {
 									
 								}
