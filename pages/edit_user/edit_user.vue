@@ -117,12 +117,13 @@
 				});
 			},
 			getTime() {
-				let yy = new Date().getFullYear();
-				let mm = new Date().getMonth() + 1;
-				let dd = new Date().getDate();
-				let hh = new Date().getHours();
-				let mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes();
-				let ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds();
+				let dateObj = new Date();
+				let yy = dateObj.getFullYear();
+				let mm = dateObj.getMonth() + 1;
+				let dd = dateObj.getDate();
+				let hh = dateObj.getHours();
+				let mf = dateObj.getMinutes() < 10 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
+				let ss = dateObj.getSeconds() < 10 ? '0' + dateObj.getSeconds() : dateObj.getSeconds();
 				return yy + mm + dd + hh + mf + ss;
 			},
 			decypt(code) {
