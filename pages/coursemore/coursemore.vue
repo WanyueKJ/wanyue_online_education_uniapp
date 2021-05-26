@@ -68,7 +68,7 @@
 			
 			viewCourseInfo(contentCourseId, contentCoursetype){
 
-				if (getApp().globalData.userinfo == '') {
+				if (app.globalData.userinfo == '') {
 					uni.navigateTo({
 						url: '../login/login'
 					})
