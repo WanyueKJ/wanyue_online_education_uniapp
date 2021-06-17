@@ -162,15 +162,12 @@
 								},
 								fail: () => {
 								},
-								complete: () => {
-								}
 							});
 						}
 						successFun(res.data.data.code);
 					},
 					fail: () => {
 					},
-					complete: () => {}
 				});
 				}
 				
