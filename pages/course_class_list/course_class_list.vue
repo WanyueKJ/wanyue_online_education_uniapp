@@ -217,29 +217,29 @@
 			},
 			viewLiveInfo(liveCourseId, sorttype) {
 				this.checktoken((successFun) => {
-						if (successFun != 0) {
-							return;
-						}
-						//套餐
-						if (sorttype == undefined) {
+					if (successFun != 0) {
+						return;
+					}
+					//套餐
+					if (sorttype == undefined) {
 
-							uni.navigateTo({
-								url: '../../packageB/pages/taocaninfo/taocaninfo?courseid=' + liveCourseId
-							});
-						}
-						else if (sorttype == 0) {
-							uni.navigateTo({
-								url: '../../packageB/pages/content-info/content-info?courseid=' + liveCourseId
-							});
-						} else if (sorttype == 1) {
-							uni.navigateTo({
-								url: '../../packageB/pages/courseinfo/courseinfo?courseid=' + liveCourseId
-							});
-						} else
-							uni.navigateTo({
-								url: '../../packageB/pages/live_course_info/live_course_info?courseid=' + liveCourseId
-							});
+						uni.navigateTo({
+							url: '../../packageB/pages/taocaninfo/taocaninfo?courseid=' + liveCourseId
 						});
+					}
+					else if (sorttype == 0) {
+						uni.navigateTo({
+							url: '../../packageB/pages/content-info/content-info?courseid=' + liveCourseId
+						});
+					} else if (sorttype == 1) {
+						uni.navigateTo({
+							url: '../../packageB/pages/courseinfo/courseinfo?courseid=' + liveCourseId
+						});
+					} else
+						uni.navigateTo({
+							url: '../../packageB/pages/live_course_info/live_course_info?courseid=' + liveCourseId
+						});
+					});
 			},
 			
 		}
@@ -282,7 +282,6 @@
 	.liveinfo-wrap {
 		width: 96%;
 		margin: 0 auto;
-		/* min-height: 1500rpx; */
 		background-color: #FFFFFF;
 	}
 
