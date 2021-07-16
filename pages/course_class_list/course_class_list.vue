@@ -222,7 +222,6 @@
 					}
 					//套餐
 					if (sorttype == undefined) {
-
 						uni.navigateTo({
 							url: '../../packageB/pages/taocaninfo/taocaninfo?courseid=' + liveCourseId
 						});
