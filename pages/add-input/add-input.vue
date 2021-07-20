@@ -96,7 +96,7 @@
 			iconClickEvent(e){
 				switch(e){
 					case 'uploadImage':
-						this.$refs.uploadImage.chooseImage()
+						this.$refs.uploadImage.chooseImage();
 						break;
 				}
 			},
