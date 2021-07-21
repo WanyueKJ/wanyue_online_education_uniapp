@@ -101,15 +101,13 @@
 <style>
 	/* 大班课内容列表公共样式 */
 	@import url("/static/css/course_list.css");
-	
-	
+
 	.conetentinfo-wrap {
 		padding-top: 2rpx;
 		min-height: 1500rpx;
 		background-color: #FAFAFA;
 	}
-	
-	
+
 	.live-list {
 		width: 90%;
 		height: 190rpx;

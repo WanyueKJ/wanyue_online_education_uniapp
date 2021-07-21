@@ -85,9 +85,6 @@
 							if (res.data.data.code == 700) {
 								uni.navigateTo({
 									url: '../login/login',
-									success: res => {},
-									fail: () => {},
-									complete: () => {}
 								});
 								return;
 							}
