@@ -74,7 +74,7 @@
 			getteacher() {
 				setTimeout(() => {
 					uni.request({
-						url: getApp().globalData.site_url + 'User.GetFollow',
+						url: app.globalData.site_url + 'User.GetFollow',
 						method: 'GET',
 						data: {
 							'uid': app.globalData.userinfo.id,
