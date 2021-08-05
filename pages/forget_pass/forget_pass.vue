@@ -48,10 +48,7 @@
 		<view class="flex align-center justify-center">
 			
 		</view>
-		
-		<!-- <other-login></other-login> -->
-		
-	
+
 		
 	</view>
 </template>
