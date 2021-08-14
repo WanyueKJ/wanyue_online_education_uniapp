@@ -177,7 +177,7 @@
 								uni.navigateBack({
 									delta: 1
 								});
-							}, 400);
+							}, 300);
 						}
 						uni.showToast({
 							icon: 'none',
