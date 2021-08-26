@@ -119,6 +119,7 @@
 			getTime() {
 				let dateObj = new Date();
 				let yy = dateObj.getFullYear();
+
 				let mm = dateObj.getMonth() + 1;
 				let dd = dateObj.getDate();
 				let hh = dateObj.getHours();
