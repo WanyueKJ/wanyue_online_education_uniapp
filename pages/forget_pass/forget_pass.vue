@@ -113,52 +113,52 @@
 				this.isForgetShow = false;
 			},
 			// 获取验证码
-		getSmsCode(){
-			//防止重复获取 
-			if((this.usernameFlag == this.username) && this.codeTime > 0){
-				uni.showToast({
-					icon:"none",
-					title: "验证码5分钟有效, 请勿多次发送"
-				})
-				return;
-			}
-			if(!this.validate()) return;
-			
-			let sign = this.sort2url({
-				'account': this.username,
-		    });
-			
-			//调用验证码接口
-			uni.request({
-			    url: app.globalData.site_url + "Login.GetCode", 
-			    data: {
-			        account: this.username,
-					type: 2, //0登录1注册2忘记密码
-					sign: sign, //加密md5串
-					// #ifdef MP-WEIXIN
-					env: 'weixin'	
-					// #endif
-			    },
-			    success: (res) => {
-					this.codeTime = 300;
-					this.usernameFlag = this.username;
+			getSmsCode(){
+				//防止重复获取
+				if((this.usernameFlag == this.username) && this.codeTime > 0){
 					uni.showToast({
-						icon:'none',
-						title: res.data.data.msg
+						icon:"none",
+						title: "验证码5分钟有效, 请勿多次发送"
 					})
-			    }
-			});
-			
-			
-			let timer = setInterval(()=>{
-				if(this.codeTime >= 1){
-					this.codeTime--;
-				} else {
-					this.codeTime = 0;
-					clearInterval(timer);
+					return;
 				}
-			},1000)
-		},
+				if(!this.validate()) return;
+
+				let sign = this.sort2url({
+					'account': this.username,
+				});
+			
+				//调用验证码接口
+				uni.request({
+					url: app.globalData.site_url + "Login.GetCode",
+					data: {
+						account: this.username,
+						type: 2, //0登录1注册2忘记密码
+						sign: sign, //加密md5串
+						// #ifdef MP-WEIXIN
+						env: 'weixin'
+						// #endif
+					},
+					success: (res) => {
+						this.codeTime = 300;
+						this.usernameFlag = this.username;
+						uni.showToast({
+							icon:'none',
+							title: res.data.data.msg
+						})
+					}
+				});
+			
+			
+				let timer = setInterval(()=>{
+					if(this.codeTime >= 1){
+						this.codeTime--;
+					} else {
+						this.codeTime = 0;
+						clearInterval(timer);
+					}
+				},1000)
+			},
 			//验证
 			validate(){
 				var mPattern = /^1[3456789][0-9]\d{8}$/;
