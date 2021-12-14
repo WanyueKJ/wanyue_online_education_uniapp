@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "意见反馈",
-  "usingComponents": {
-    "uni-collapse": "/components/uni-ui/uni-collapse/uni-collapse",
-    "uni-collapse-item": "/components/uni-ui/uni-collapse-item/uni-collapse-item"
-  }
-}

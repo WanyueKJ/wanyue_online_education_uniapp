@@ -1,6 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "uni-nav-bar": "/components/uni-ui/uni-nav-bar/uni-nav-bar"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "navigationBarTitleText": "购物车",
-  "usingComponents": {
-    "uni-nav-bar": "/components/uni-ui/uni-nav-bar/uni-nav-bar"
-  }
-}
