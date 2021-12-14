@@ -1,9 +1,9 @@
 <template>
 	<view>
-		
+
 		<!-- #ifndef H5 -->
 		<uni-nav-bar :border="false" @clickLeft="back" left-icon="back" title="编辑资料">
-			
+
 		</uni-nav-bar>
 		<!-- #endif -->
 
@@ -96,7 +96,7 @@
 											title: '上传失败，请重试',
 											icon: 'none'
 										});
-										
+
 									}, {
 										region: 'ECN',
 										domain: app.globalData.qiniuimageurl,
@@ -171,14 +171,14 @@
 								key: 'userinfo',
 								data: app.globalData.userinfo,
 								success: function(res) {
-									
+
 								}
 							});
 							setTimeout(() => {
 								uni.navigateBack({
 									delta: 1
 								});
-							}, 300);
+							}, 400);
 						}
 						uni.showToast({
 							icon: 'none',
@@ -187,7 +187,7 @@
 						if (parseInt(res.data.data.code) !== 0) {
 
 							return;
-						}						
+						}
 					},
 					fail: () => {
 						uni.showToast({
