@@ -4,12 +4,12 @@
 		<view class="top-wrap">
 			<button class="currentLogin">找回密码</button>
 		</view>
-				
+
 		<view class="text-center" style="padding-bottom: 70rpx;
 		font-size: 55rpx;">
-			
+
 		</view>
-		
+
 		<view class="px-2 login-input-wrap">
 			<template v-if="!status">
 				<view class="mb-2">
@@ -21,35 +21,35 @@
 						{{get_captcha_txt}}
 					</view>
 				</view>
-				
+
 				<view class="chongzhi-wrap">
 					<input type="text" placeholder-style="color:#C9C9C9" v-model="password" placeholder="请输入重置密码" class="border-bottom p-2 flex-1"/>
 				</view>
-				
+
 			</template>
-			
-			
-			
+
+
+
 		</view>
-		
+
 		<view class="login-btn-wrap py-2 px-2">
-			<button class="login-btn bg-main text-white" style="border-radius: 50rpx; border: 0;" 
+			<button class="login-btn bg-main text-white" style="border-radius: 50rpx; border: 0;"
 			type="primary" :enabled="false" :class="{ opatity: enabled}"
 			 @click="submit">
 			确定
 			</button>
-			
+
 			<navigator v-show="isForgetShow" class="forget-pass" url="/pages/forget_pass/forget_pass">{{foretPass}}</navigator>
-			
-		</view>
-		
-		
-		
-		<view class="flex align-center justify-center">
-			
+
 		</view>
 
-		
+
+
+		<view class="flex align-center justify-center">
+
+		</view>
+
+
 	</view>
 </template>
 
@@ -58,7 +58,7 @@
 	import otherLogin from '@/components/common/other-login.vue';
 	import md5_js from "@/static/js/md5.js";
 	const app = getApp();
-	
+
 	export default {
 		components:{
 			uniStatusBar,
@@ -85,7 +85,7 @@
 		onLoad() {
 			let {statusBarHeight} = uni.getSystemInfoSync();
 			this.statusBarHeight = statusBarHeight;
-			
+
 			this.loginType = 'captcha';
 			this.get_captcha_txt = "获取验证码";
 		},
@@ -96,8 +96,8 @@
 				}
 				return false;
 			},
-			
-		
+
+
 		},
 		methods: {
 			back(){
@@ -127,7 +127,7 @@
 				let sign = this.sort2url({
 					'account': this.username,
 				});
-			
+
 				//调用验证码接口
 				uni.request({
 					url: app.globalData.site_url + "Login.GetCode",
@@ -148,8 +148,8 @@
 						})
 					}
 				});
-			
-			
+
+
 				let timer = setInterval(()=>{
 					if(this.codeTime >= 1){
 						this.codeTime--;
@@ -176,36 +176,36 @@
 			    Object.keys(arr1).sort(function(a, b) {
 			           return (a.name + '').localeCompare(b.name + '');
 			       })
-				   
+
 			       var text = "";
 			       for (var index in arr1) {
 			           text = text + index + "=" + arr1[index] + "&";
 			       }
 			       text = text.substr(0, text.length - 1);
 				   text += '&' + this.signKey;
-				   
+
 			       return md5_js.hex_md5(text);
 			},
 			// 提交
 			submit(){
-				
+
 				if(!this.validate()) return;
-				
+
 				let url = app.globalData.site_url + "Login.Forget";
 				let data = {
 					username: this.username,
 					code: this.code,
-					pass: this.password, 
+					pass: this.password,
 					// #ifdef MP-WEIXIN
-					env: 'weixin'	
+					env: 'weixin'
 					// #endif
-				};		
+				};
 				//登录处理
 				uni.request({
-				    url: url, 
+				    url: url,
 				    data: data,
 				    success: (res) => {
-						
+
 					uni.showToast({
 						icon:'none',
 						title: res.data.data.msg,
@@ -217,91 +217,91 @@
 
 				    }
 				});
-				
+
 			}
-			
+
 		}
 	}
 </script>
 
 
 <style>
-	
+
 	.login-all-wrap {
 		padding: 0 15rpx;
 	}
-	
+
 	.reg-btn {
 		float: right;
 		margin-top: -45px;
 		font-size: 30rpx;
 		color: #646464;
 	}
-	
+
 	.top-wrap button {
 		display: inline-block;
 		background-color: #FFFFFF;
 		overflow: inherit;
 	}
-	
-	button::after{ 
-		border: none; 
+
+	button::after{
+		border: none;
 	}
-	
+
 	.captcha-login-btn,
 	.pass-login-btn {
 		font-size: 30rpx;
 		color: #646464;
 	}
-	
+
 	.currentLogin {
 		font-weight: bold;
 		font-size: 44rpx;
 	}
-	
-	
-	
-	
+
+
+
+
 	/* 输入框部分 */
 	.login-input-wrap input {
 		color: #000000;
 	}
-	
+
 	.border-bottom {
-		color: #C9C9C9;			
+		color: #C9C9C9;
 	}
-	
+
 	.verify-code-wrap {
 		margin-top: 60rpx;
 	}
-	
-	
+
+
 	/*登录按钮部分*/
 	.login-btn-wrap {
 		margin-top: 80rpx;
 		height: 90rpx;
 	}
-	
+
 	.login-btn-wrap button {
 		font-size: 30rpx;
 		height: 100%;
 		line-height: 90rpx;
 	}
-	
+
 	/* 登录按钮 输入内容时,去掉灰色效果 */
 	.login-btn {
-		background: linear-gradient(to right, #7BD68E, #65CCB9);	
+		background: linear-gradient(to right, #7BD68E, #65CCB9);
 	}
-	
+
 	.opatity {
-		opacity: 0.5; 
+		opacity: 0.5;
 	}
-	
+
 	/* 登录图标 */
 	.login-icon-all-wrap {
 		margin-top: 320rpx;
 	}
-	
+
 	.login-icon {
 		color: #60E28B;
 		display: inline-block;
@@ -311,32 +311,31 @@
 		line-height: 88rpx;
 		font-size: 80rpx;
 	}
-	
+
 	.qq-login-icon {
 		color: #63C6EF;
 	}
-	
+
 	.uni-tag-text--primary {
 		margin: 0 60rpx;
 	}
-	
+
 	.uni-tag-text--primary text {
 		display: block;
 	}
-	
+
 	.login-icon-text {
 		color: #646464 !important;
 	}
-	
+
 	.login-botttom-text {
 		color: #646464;
 	}
-	
 	.xieyi {
 		color: #45DCAC;
 		font-size: 20rpx !important;
 	}
-	
+
 	/* 忘记密码 */
 	.forget-pass {
 		font-size: 26rpx;
@@ -344,6 +343,6 @@
 		text-align: right;
 		margin-top: 30rpx;
 	}
-	
-	
+
+
 </style>
