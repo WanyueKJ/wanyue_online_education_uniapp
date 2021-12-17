@@ -56,7 +56,6 @@
 					url: gData.site_url + 'User.UpUserInfo',
 					method: 'GET',
 					data: {
-						// uid token fields
 						'uid' : gData.userinfo.id,
 						'token' : gData.userinfo.token,
 						'fields' : JSON.stringify({
