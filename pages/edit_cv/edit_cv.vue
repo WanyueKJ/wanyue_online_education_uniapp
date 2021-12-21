@@ -42,7 +42,7 @@
 				touid: '',
 				school: '',
 				experience: '',
-				feature: '',
+				feature: ''
 			}
 		},
 		onLoad(option) {
