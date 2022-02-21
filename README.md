@@ -1,40 +1,40 @@
 <div align=center><img src="https://images.gitee.com/uploads/images/2021/0317/105428_2d83f8f9_8543696.png" width="590" height="212"/></div>
 
-### 项目说明（如果对你有用，请点亮右上角的Star！）
+### Project Description (If useful to you, please light up the Star in the upper right corner!)
 
-##### <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">项目文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">部署文档</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">常见问题</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">升级日志</a>
+##### <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">Project documentation</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">Deployment document</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">Q&A</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">The upgrade log</a>
 
 ---
 
-### 系统演示  
+### Demo  
 ![演示图](https://images.gitee.com/uploads/images/2021/0401/155114_9bce1969_8162876.png "app系统演示.png")
 ### Web版地址
-- 首页地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a>
+- Home page address: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a>
 - 学生端地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a> 账号:13800000000 密码:123456
 - 教师端地址: <a target="_blank" href="https://demo.sdwanyue.com/teacher">https://demo.sdwanyue.com/teacher</a> 账号:13866666666 密码:123456
 - 后台地址: <a target="_blank" href="https://demo.sdwanyue.com/admin">https://demo.sdwanyue.com/admin</a> 账号: demo 密码: 123456
 - 仓库地址: <a target="_blank" href="https://gitee.com/WanYueKeJi/wanyue_education_web">点击此处</a> 
     
-### 项目介绍
-万岳在线教育经过对教育市场的长期调研，综合当下各大线上教培机构对于教育平台的功能需求，着重于用户体验，自主研发了一套集知识付费、直播授课、网校建设等功能为一体的万岳在线教育系统，满足用户对于公开课、大班课、小班课、职业培训等多种线上教学活动的场景需求。
-* 所有使用到的框架或者组件都是基于开源项目，代码保证100%开源。
-* 系统功能通用，无论是个人还是企业都可以利用该系统快速搭建一个属于自己的在线教育平台。
+### Project introduction
+Wanyue online education after a long-term investigation of the education market, comprehensive of the current major online education institutions for the functional needs of the education platform, focusing on user experience, independent research and development of a set of knowledge payment, live teaching, online school construction and other functions as one of the Wanyue online education system, Meet the scene requirements of users for various online teaching activities such as open class, large class, small class and vocational training.
+* All frameworks or components used are based on open source projects and the code is guaranteed to be 100% open source.
+* The system functions are universal, both individuals and enterprises can use the system to quickly build an online education platform of their own.
 
 系统前端采用uni-app+socket.io+WebRtc核心技术, 接口采用PhalApi框架配合TP5.1框架ThinkCMF,系统功能如下:
 
 ### 技术亮点
 ```
   UNI-APP端:
-    1.一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序
-    2.依托Dcloud公司强大的生态圈, 开发者无论是拿来直接用还是自己修改后使用都
-    十分的方便, 网上资料/文档齐全,无需担心bug解决不了.
-    3.支持视频直播、聊天等即时通讯功能, 开源项目有很多,可是带聊天室和直播的寥寥可数.  
-    4.本项目已内置好socket.io组件和声网WebRtc插件, 开发者可直接拿来调试学习. 
-      无需再从基本的websocket写起.
-    5.项目占用空间小,全部加起来不到2MB,占用开发者磁盘空间极少.
-    6.代码中做了多端适配, 小程序端、H5端、安卓、IOS端样式都做到了样式兼容.
-    7.vue/nvue混合开发, 保证了样式美观的同时, 规避了nvue样式的兼容问题.
-    8.配置方便, 无需安装, 下载之后使用Hbuilder编辑器即可运行查看.    
+1. A set of code that can be published to iOS, Android, Web (responsive), and various applets
+2. Relying on the strong ecosystem of Dcloud company, developers can use it directly or modify it by themselves
+Very convenient, online information/documents complete, no need to worry about the bug can not be solved.
+3. Support instant messaging functions such as live video and chat. There are many open source projects, but few with chat rooms and live broadcast.
+4. This project has built-in socket. IO components and WebRtc plug-ins, which can be directly used by developers for debugging and learning.
+You no longer need to start with a basic Websocket.
+5. The project occupies a small space, less than 2MB in total, occupying very little disk space for developers.
+6. Multi-end adaptation has been made in the code, including style compatibility of small program side, H5 side, Android side and IOS side.
+7. Vue/NVUE mixed development, to ensure the style beautiful at the same time, to avoid nvUE style compatibility problems.
+8. Easy to configure, no installation, after downloading the Hbuilder editor can be run to view.   
     
   后端:  
     1.后台应用ThinkCMF快速生成现代化表单.
