@@ -8,7 +8,7 @@
 
 ### Demo  
 ![演示图](https://images.gitee.com/uploads/images/2021/0401/155114_9bce1969_8162876.png "app系统演示.png")
-### Web版地址
+### The Web version of address
 - Home page address: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a>
 - 学生端地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a> 账号:13800000000 密码:123456
 - 教师端地址: <a target="_blank" href="https://demo.sdwanyue.com/teacher">https://demo.sdwanyue.com/teacher</a> 账号:13866666666 密码:123456
@@ -22,9 +22,9 @@ Wanyue online education after a long-term investigation of the education market,
 
 系统前端采用uni-app+socket.io+WebRtc核心技术, 接口采用PhalApi框架配合TP5.1框架ThinkCMF,系统功能如下:
 
-### 技术亮点
+### Technical highlights
 ```
-  UNI-APP端:
+UNI-APP端:
 1. A set of code that can be published to iOS, Android, Web (responsive), and various applets
 2. Relying on the strong ecosystem of Dcloud company, developers can use it directly or modify it by themselves
 Very convenient, online information/documents complete, no need to worry about the bug can not be solved.
@@ -36,143 +36,142 @@ You no longer need to start with a basic Websocket.
 7. Vue/NVUE mixed development, to ensure the style beautiful at the same time, to avoid nvUE style compatibility problems.
 8. Easy to configure, no installation, after downloading the Hbuilder editor can be run to view.   
     
-  后端:  
-    1.后台应用ThinkCMF快速生成现代化表单.
-    2.PHPExcel数据导出,导出表格更加美观,可视.
-    3.支持微信/支付宝支付,支付接入更加快捷,简单.
-    4.后台多任务窗口化操作界面.
-    5.内置强大灵活的权限管理.
-    6.内置组合数据,系统配置,管理碎片化数据.
-    7.客户端完善的交互效果和动画.
-    8.高频数据缓存.
-    9.内置PhalApi接口框架,前后端分离更方便.
-    10.WebSocket长连接减少CPU及内存使用及网络堵塞，减少请求响应时长.
-    11.支持队列降低流量高峰，解除耦合，高可用.
-    12.无需安装, clone下来即可直接使用, 完全100%真开源.
-    
-   注:关于PC端源码请看本公司另一个开源项目, 万岳在线教育系统Web版, 
-      此两个项目是互通的  
+后端:  
+1. Background application ThinkCMF to quickly generate modern forms.
+2.PHPExcel data export, export table more beautiful and visual.
+3. Support wechat/Alipay payment, payment access is faster and simpler.
+4. Background multi-task window.
+5. Built-in powerful and flexible rights management.
+6. Built-in combined data, system configuration, and management of fragmented data.
+7. Perfect interactive effects and animations on the client side.
+8. High-frequency data cache.
+9. Built-in PhalApi interface framework for easy separation of front and back ends.
+10.WebSocket long connection reduces CPU and memory usage, network congestion, and request response time.
+11. Support queue to reduce traffic peak, remove coupling, high availability.
+12. Clone can be used directly without installation, completely 100% true open source.
+
+Note: regarding the PC side source code, please see another open source project of our company, Wanyue online education system Web version, the two projects are interchangeable 
 ```
-### 功能展示
+### Function display
  ![展示图](https://images.gitee.com/uploads/images/2021/0410/144209_cf74cc99_8162876.png "function_all2.png")
  
- ### 主要功能介绍
- #### 讲师PC端
- * 登录页面，可通过手机号码及验证码或密码进行登录，支持qq、微信帐号登录
- * 首页功能，展示老师头像、名称，我的直播课数量，我的课程数量，常用功能以及常见问题
- * 直播课堂，
+ ### Main Functions
+ #### Lecturer at the PC
+* On the login page, you can use your mobile phone number, verification code or password to log in. You can use QQ or wechat accounts to log in
+* Home page function, showing teacher's picture, name, the number of my live courses, the number of my courses, common functions and frequently asked questions
+* Live classes
+
+1. Phonetics class
+In the voice class, the lecturer can enter the class and explain to the students according to the video and voice
+
+2. Video classes
+Video class lecturers can enable the camera, upload PPT picture courseware and share the screen
+* Account, display profile picture, nickname and other account information, can be edited profile picture, nickname
  
-     1.语音大班课
-             语音大班课内，讲师可进入课程根据视频和语音对学生进行讲解
-             
-     2.视频大班课
-             视频大班课讲师可以进行开启摄像头、上传ppt图片课件、屏幕共享操作
- * 账号，展示头像、昵称等账号信息，可编辑头像、昵称
  
- 
- #### 学生UNI-APP端
- * 首页，
- 
-     1.搜索 可根据课程、老师名称关键字查询搜索
-     
-     2.轮播图 后台添加的轮播图展示
-     
-     3.直播课堂 直播课展示列表, 直播分为三种类型（语音+视频、语音+音频、语音+ppt+摄像头直播）
- 
-     4.精选内容 内容展示列表，包含封面、标题、内容类型（视频、音频、图文）
- 
- * 精选内容， 
- 
-     1. 详情页：由上往下依次展示封面图、课程标题，学习人数、主讲老师与辅导老师、课程类型（分为密码、免费、付费三种类型)等；
-     
-     2. 查看详情：上部为视频、音频播放区域，视频、音频支持进度条滑动查看，视频可全屏观看，可选择倍速播放，并有跑马灯防盗水印，播放区域下方为内容标题、简介、发布时间等信息和详细内容展示（支持图文）。
- 
-  * 直播课堂，
-     
-     1.语音大班课 
+ #### Student UNI - APP side
+* home page,
 
-     2.视频大班课 
+1. Search You can search by course or teacher name
 
-  * 我的课程：
+2. Display the rote chart added in the background
 
-     1.我的课程与WEB内的选课中心一致，可根据学段、年纪、科目、类别来搜索对应课程。
+3. List of live classes, which can be divided into three types (voice + video, voice + audio, voice + PPT + camera live)
 
-  * 消息：
+4. Display list of selected content, including cover, title, content type (video, audio, graphic)
 
-     1.系统消息：学生接收系统发送到的消息提醒；
+* Selected content,
 
-     2.课程动态：学生订阅的课程更新时，会收到课程信息；
+1. Details page: show cover picture, course title, number of students, lecturer and tutor, course type (password, free and paid) from top to bottom;
 
-     3.讲师动态：学生所关注的讲师发布新课程或有新的动态时，会收到讲师动态信息。
+2. View details: The upper part is the video and audio playback area, and the progress bar can be sliding to view the video. The video can be viewed in full screen and can be played at double speed, and there is a horse light anti-theft watermark.
 
-  * 分享与积分：
+* Live classes,
 
-     1.海报分享：展示当前平台所有裂变海报活动列表，可查看名称、课程信息、二维码等，分享成功后可获得积分。
+1. Phonetics class
 
-     2.积分：显示用户的积分余额以及积分明细，积分的来源是购买课程返还的积分和下级用户购买课程奖励的积分，积分用途为购买课程时抵扣。
+2. Video classes
 
-  * 个人中心：
+* My courses:
 
-     1.最上展示学生的头像、昵称和ID，并且有关注讲师的显示。
+1. My courses are consistent with the course selection center in the WEB, so I can search the corresponding courses according to the learning section, age, subject and category.
 
-     2.已购买：显示学生学习过或已购买的直播课和内容课。
+* the message:
 
-     3.我的积分；
+1. System message: Students receive the message reminder sent by the system;
 
-     4.意见反馈；
+2. Course dynamics: Students will receive course information when the subscribed courses are updated;
 
-     5.关于我们；
+3. Lecturer dynamics: when the lecturer concerned by students releases a new course or has a new dynamic, they will receive the lecturer dynamic information.
 
-     6.设置：包含联系我们、版本更新和清除缓存。
+* Sharing and credits:
 
-### 后台主要功能介绍
-* 设置
-  
-  1.网站信息 网站的相关信息及SEO设置
-    
-  2.私密设置 配置系统的重要参数（包登录配置、直播配置、云存储设置）
-    
-  3.幻灯片管理 首页轮播banner图管理配置
-  
-  4.上传设置 上传信息相关配置
-  
-  5.文件存储 文件存储信息相关配置
-  
-* 用户管理
-    
-  1.管理组 编辑后台管理员身份及权限等相关配置
-    
-  2.用户列表 平台所有注册用户信息列表，可进行编辑、设置讲师资格、禁用、删除等操作
+1. Poster sharing: Display the list of all fission poster activities on the current platform. You can view the name, course information, TWO-DIMENSIONAL code, etc., and get points after successful sharing.
 
-  3.教师列表 后台将普通用户设置为讲师的用户显示在此处
-  
-* 插件中心
+2. Points: display the balance and details of users' points. The points come from the points returned by purchasing courses and the points awarded by lower-level users for purchasing courses.
 
-  1.插件列表 查看编辑应用插件信息
+* Personal Center:
 
-* 内容管理
-    
-  1.文章管理 网站相关文章配置
-  
-  2.分类管理 文章分类管理
-  
-  3.页面管理 联系我们、关于我们等单页内容配置
-    
-* 订单管理 
+1. Display students' profile pictures, nicknames and IDS at the top, and pay attention to the lecturer's display.
 
-  1.展示用户购买课程后展示的会员名称、购买价格、订单号、需要线下邮寄教材的收货信息与支付方式与状态
+2. Purchased: shows the live courses and content courses that students have studied or purchased.
 
-* 知识管理
-  
-  1.学级分类 登录页的学习阶段分类，可在后台自行添加
+3. My integral;
 
-  2.付费内容列表 展示添加的所有需要付费/免费的文章内容，可查看平台所有内容信息。
-  
-* 大班课列表
-  
-  1.语音大班课 
-  
-  2.视频大班课 
+4. Feedback;
+
+About us;
+
+6. Settings: Contact us, version update and clear cache.
+
+### Main functions of the background
+* set
+
+1. Website information Website related information and SEO Settings
+
+2. Private Settings Configure important parameters of the system (package login configuration, live broadcast configuration, cloud storage Settings)
+
+3. Slide management Manage and configure the rotation banner chart of the home page
+
+4. Upload Settings Upload information configurations
+
+5. Configure file storage information
+
+* User management
+
+1. Edit background administrator identities and permissions
+
+2. User List List of all registered users on the platform, which can be edited, qualified, disabled, and deleted
+
+3. In the background of teacher List, the user whose common user is set as lecturer is displayed here
+
+* Plug-in Center
+
+1. Plug-in list View and edit application plug-in information
+
+* Content Management
+
+1. Article management Configuration of related articles on the website
+
+2. Classification management Article classification management
+
+3. Page management Contact us, about us and other single page content configuration
+
+* Order management
+
+1. Display the member name, purchase price, order number, receiving information, payment method and status of offline teaching materials displayed after the user purchases the course
+
+* Knowledge management
+
+1. Learning level Classification The learning level classification of the login page can be added in the background
+
+2. Paid content list displays all the added articles that need to be paid/free, and you can view all the content information of the platform.
+
+* List of large classes
+
+1. Phonetics class
+
+2. Video classes
   
   
   ### 页面展示
