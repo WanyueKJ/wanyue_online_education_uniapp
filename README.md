@@ -174,35 +174,32 @@ About us;
 2. Video classes
   
   
-  ### 页面展示
+  ### The page display
   ![页面展示](https://images.gitee.com/uploads/images/2021/0410/144409_e7f6736b_8162876.png "uniapp详情2.png")
-  #### 直播课页面
+  #### Live course Page
   ![展示图](https://images.gitee.com/uploads/images/2021/0317/105712_68d3b78b_8543696.png "live_show.png")
     
-  #### 功能对比
+  #### Functional comparison
    ![输入图片说明](https://images.gitee.com/uploads/images/2021/0410/143936_7235ec5f_8162876.png "功能对比4(1).png") 
   
-   ### 开源版使用须知
-    
-   * 允许用于个人学习、教学案例
-    
-   * 开源版不适合商用，商用请购买商业版
-    
-   * 禁止将本项目的代码和资源进行任何形式的出售，产生的一切任何后果责任由侵权者自负  
+   ### Open Source Edition Usage notes 
+  *  Allowed for personal study and teaching cases
+  * The open source version is not suitable for commercial use. Please purchase the commercial version for commercial use
+  * It is forbidden to sell the code and resources of the project in any form, and the infringer shall be solely responsible for any consequences arising therefrom
   
-  ### 商业合作
-  * 如果你想使用功能更完善的教育系统，请联系QQ客服: 2415408120获取专业版
-  * 如果您想基于教育系统进行定制开发，我们提供有偿定制服务支持！
-  * 其他合作模式不限，欢迎来撩！
-  * 官网地址：[http://git.sdwanyue.com](http://git.sdwanyue.com)
+  ### Business cooperation
+  * If you want to use a more complete education system, please contact QQ customer service: 2770722087 to obtain the professional version
+  * If you want to customize development based on the education system, we provide paid customization service support!
+  * There is no limit to other cooperation modes, welcome to visit!
+  * Official website: [http://git.sdwanyue.com](http://git.sdwanyue.com)
                   
     
-  ### 联系我们（加客服经理微信或QQ，免费获取sql脚本）
+  ### Contact us (add customer service manager wechat or QQ, free access to THE SQL script)
   
   <div style='height: 130px'>
       <img class="kefu_weixin" style="float:left;" src="https://images.gitee.com/uploads/images/2021/0317/105917_b29af80c_8543696.png" width="602" height="123"/>
       <div style="float:left;">
-          <p>QQ：259603330</p>
+          <p>QQ：2770722087</p>
           <p>QQ群：995910672</p>
       </div>
   </div>
