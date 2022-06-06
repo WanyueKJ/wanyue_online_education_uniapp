@@ -9,10 +9,10 @@
 ### Demo  
 ![演示图](https://images.gitee.com/uploads/images/2021/0401/155114_9bce1969_8162876.png "app系统演示.png")
 ### The Web version of address
-- Home page address: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a>
-- 学生端地址: <a target="_blank" href="https://demo.sdwanyue.com">https://demo.sdwanyue.com</a> 账号:13800000000 密码:123456
-- 教师端地址: <a target="_blank" href="https://demo.sdwanyue.com/teacher">https://demo.sdwanyue.com/teacher</a> 账号:13866666666 密码:123456
-- 后台地址: <a target="_blank" href="https://demo.sdwanyue.com/admin">https://demo.sdwanyue.com/admin</a> 账号: demo 密码: 123456
+- Home page address: <a target="_blank" href="https://edudemo.sdwanyue.com">https://edudemo.sdwanyue.com</a>
+- 学生端地址: <a target="_blank" href="https://edudemo.sdwanyue.com">https://edudemo.sdwanyue.com</a> 账号:13800000000 密码:123456
+- 教师端地址: <a target="_blank" href="https://edudemo.sdwanyue.com/teacher">https://edudemo.sdwanyue.com/teacher</a> 账号:13866666666 密码:123456
+- 后台地址: <a target="_blank" href="https://edudemo.sdwanyue.com/admin">https://edudemo.sdwanyue.com/admin</a> 账号: demo 密码: 123456
 - 仓库地址: <a target="_blank" href="https://gitee.com/WanYueKeJi/wanyue_education_web">点击此处</a> 
     
 ### Project introduction
