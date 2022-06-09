@@ -180,7 +180,7 @@ About us;
   ![展示图](https://images.gitee.com/uploads/images/2021/0317/105712_68d3b78b_8543696.png "live_show.png")
     
   #### Functional comparison
-   ![输入图片说明](https://images.gitee.com/uploads/images/2021/0410/143936_7235ec5f_8162876.png "功能对比4(1).png") 
+   ![输入图片说明](https://gitee.com/WanYueKeJi/wanyue_education_uniapp/raw/newone/%E5%8A%9F%E8%83%BD%E8%A1%A8.jpg "功能对比4(1).png") 
   
    ### Open Source Edition Usage notes 
   *  Allowed for personal study and teaching cases
