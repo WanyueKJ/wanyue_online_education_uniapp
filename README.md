@@ -2,7 +2,7 @@
 
 ### Project Description (If useful to you, please light up the Star in the upper right corner!)
 
-##### <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100689">Project documentation</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2100691">Deployment document</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_web/2107615">Q&A</a> | <a target="_blank" href="http://doc.sdwanyue.com/wanyue_open_uniapp/2199269">The upgrade log</a>
+##### <a target="_blank" href="https://www.kancloud.cn/wanyuekaiyuan11/wanyue_education/2788919">Project documentation</a> | <a target="_blank" href="https://www.kancloud.cn/wanyuekaiyuan11/wanyue_education/2788919">Deployment document</a> | <a target="_blank" href="https://www.kancloud.cn/wanyuekaiyuan11/wanyue_education/2788919">Q&A</a> | <a target="_blank" href="https://www.kancloud.cn/wanyuekaiyuan11/wanyue_education/2788919">The upgrade log</a>
 
 ---
 
